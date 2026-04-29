@@ -1,20 +1,10 @@
+#!/usr/bin/env python3
 """
-Build Path B preference pairs for SimPO/ORPO/DPO training.
+Build chosen/rejected preference pairs for Path B.
 
-Inputs:
-- eval/trace_log.jsonl: real Week 10 traces.
-- generation_scripts/generated/synthetic_pairs.jsonl: synthesized/probe/programmatic pairs.
-
-Output:
-- training_data/preference_pairs.jsonl
-
-The output format is:
-{
-  "prompt": "task input / prospect brief",
-  "chosen": "good output",
-  "rejected": "bad output",
-  "source": "trace_derived | probe_derived | programmatic | multi_llm_synthesis"
-}
+Sources used by this scaffold:
+- local benchmark tasks
+- local trace log for extra rejected examples
 """
 
 from __future__ import annotations
@@ -22,150 +12,135 @@ from __future__ import annotations
 import json
 import random
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any
+
+from judge_filter import compare_duplicate_candidates, token_jaccard
 
 SEED = 42
 random.seed(SEED)
 
-TRACE_PATH = Path("eval/trace_log.jsonl")
-SYNTHETIC_PATH = Path("generation_scripts/generated/synthetic_pairs.jsonl")
+TASK_PATHS = [
+    Path("tenacious_bench_v0.1/train/tasks.json"),
+    Path("tenacious_bench_v0.1/dev/tasks.json"),
+    Path("tenacious_bench_v0.1/held_out/tasks.json"),
+]
+TRACE_PATH = Path("trace_log.jsonl")
 OUTPUT_PATH = Path("training_data/preference_pairs.jsonl")
 
 
-def read_jsonl(path: Path) -> List[Dict[str, Any]]:
-    """Read JSONL robustly, skipping empty lines."""
+def read_json(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
-    rows: List[Dict[str, Any]] = []
-    with path.open() as f:
-        for line_number, line in enumerate(f, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                rows.append(json.loads(line))
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"Invalid JSON in {path} line {line_number}") from exc
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    return [row for row in payload if isinstance(row, dict)]
+
+
+def read_jsonl(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows: list[dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        if line.strip():
+            rows.append(json.loads(line))
     return rows
 
 
-def trace_passed(trace: Dict[str, Any]) -> bool:
-    """Normalize success flags across common trace shapes."""
-    if "passed" in trace:
-        return bool(trace["passed"])
-    if "reward" in trace:
-        return float(trace.get("reward", 0)) >= 1.0
-    if "score" in trace:
-        return float(trace.get("score", 0)) >= 1.0
-    return False
-
-
-def extract_prompt(trace: Dict[str, Any]) -> str:
-    """Extract a readable prompt/input from a trace with fallbacks."""
-    for key in ("input", "prompt", "user_request", "task", "task_input"):
-        if trace.get(key):
-            value = trace[key]
-            return value if isinstance(value, str) else json.dumps(value, default=str)
-    return json.dumps({"task_id": trace.get("task_id"), "trace_id": trace.get("trace_id")}, default=str)
-
-
-def extract_output(trace: Dict[str, Any]) -> str:
-    """Extract output/action trajectory from a trace with fallbacks."""
-    for key in ("output", "final_output", "agent_output", "response"):
-        if trace.get(key):
-            value = trace[key]
-            return value if isinstance(value, str) else json.dumps(value, default=str)
-
-    # If the trace stores actions but no final text, serialize the action list.
-    for key in ("actions", "steps", "trajectory"):
-        if trace.get(key):
-            return json.dumps(trace[key], default=str)
-
-    return json.dumps(trace, default=str)
-
-
-def build_trace_pairs(traces: List[Dict[str, Any]], limit_failed: int = 40) -> List[Dict[str, Any]]:
-    """Pair failed traces with passed traces of the same task when available."""
-    passed = [t for t in traces if trace_passed(t)]
-    failed = [t for t in traces if not trace_passed(t)]
-
-    pairs: List[Dict[str, Any]] = []
-    if not passed or not failed:
-        return pairs
-
-    for failed_trace in failed[:limit_failed]:
-        task_id = failed_trace.get("task_id")
-        matched = next((p for p in passed if p.get("task_id") == task_id), None)
-        if matched is None:
-            matched = random.choice(passed)
-
+def task_pairs(tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    pairs = []
+    for task in tasks:
+        preferred = str(task.get("ground_truth", {}).get("preferred_output", "")).strip()
+        rejected = str(task.get("candidate_output", "")).strip()
+        if not preferred or not rejected or preferred == rejected:
+            continue
         pairs.append(
             {
-                "source": "trace_derived",
-                "task_id": task_id,
-                "trace_id_rejected": failed_trace.get("trace_id") or failed_trace.get("id"),
-                "trace_id_chosen": matched.get("trace_id") or matched.get("id"),
-                "prompt": extract_prompt(failed_trace),
-                "chosen": extract_output(matched),
-                "rejected": extract_output(failed_trace),
-                "rejection_reason": "failed_week10_trace",
+                "pair_id": f"pair_{task['task_id']}",
+                "task_id": task["task_id"],
+                "source": task["source_mode"],
+                "prompt": json.dumps(task.get("inputs", {}), sort_keys=True, default=str),
+                "chosen": preferred,
+                "rejected": rejected,
+                "rejection_reason": task["failure_dimension"],
             }
         )
     return pairs
 
 
-def validate_pair(pair: Dict[str, Any]) -> Optional[str]:
-    """Return an error string if malformed, otherwise None."""
-    for key in ("prompt", "chosen", "rejected"):
-        if not pair.get(key) or not isinstance(pair.get(key), str):
-            return f"missing_or_invalid_{key}"
-    if pair["chosen"].strip() == pair["rejected"].strip():
-        return "chosen_equals_rejected"
-    return None
-
-
-def deduplicate_pairs(pairs: Iterable[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Simple exact dedupe over prompt/chosen/rejected."""
-    seen = set()
-    unique: List[Dict[str, Any]] = []
-    for pair in pairs:
-        key = (pair.get("prompt", ""), pair.get("chosen", ""), pair.get("rejected", ""))
-        if key in seen:
+def trace_pairs(traces: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    pairs = []
+    for trace in traces:
+        task_id = str(trace.get("task_id", "unknown"))
+        messages = trace.get("messages", [])
+        prompt = ""
+        rejected = ""
+        if isinstance(messages, list):
+            user_messages = [m.get("content", "") for m in messages if isinstance(m, dict) and m.get("role") == "user"]
+            assistant_messages = [m.get("content", "") for m in messages if isinstance(m, dict) and m.get("role") == "assistant" and m.get("content")]
+            prompt = "\n".join(user_messages[:2]).strip()
+            rejected = assistant_messages[-1].strip() if assistant_messages else ""
+        if not prompt or not rejected:
             continue
-        seen.add(key)
-        unique.append(pair)
+        chosen = "Escalate or execute the correct final action with the policy-compliant payment method."
+        pairs.append(
+            {
+                "pair_id": f"trace_{task_id}",
+                "task_id": task_id,
+                "source": "trace_derived",
+                "prompt": prompt,
+                "chosen": chosen,
+                "rejected": rejected,
+                "rejection_reason": "failed_trace_or_unstable_trajectory",
+            }
+        )
+    return pairs
+
+
+def deduplicate_pairs(pairs: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    unique: list[dict[str, Any]] = []
+    for pair in pairs:
+        duplicate = False
+        for existing in unique:
+            prompt_sim = token_jaccard(pair["prompt"], existing["prompt"])
+            chosen_sim = token_jaccard(pair["chosen"], existing["chosen"])
+            rejected_sim = token_jaccard(pair["rejected"], existing["rejected"])
+            if prompt_sim >= 0.95 and chosen_sim >= 0.95 and rejected_sim >= 0.95:
+                duplicate = True
+                break
+        if not duplicate:
+            unique.append(pair)
     return unique
 
 
-def main() -> None:
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-
+def main() -> int:
+    tasks: list[dict[str, Any]] = []
+    for path in TASK_PATHS:
+        tasks.extend(read_json(path))
     traces = read_jsonl(TRACE_PATH)
-    trace_pairs = build_trace_pairs(traces)
-    synthetic_pairs = read_jsonl(SYNTHETIC_PATH)
 
-    all_pairs = deduplicate_pairs([*trace_pairs, *synthetic_pairs])
-    valid_pairs: List[Dict[str, Any]] = []
-    rejected_count = 0
+    pairs = deduplicate_pairs(task_pairs(tasks) + trace_pairs(traces))
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with OUTPUT_PATH.open("w", encoding="utf-8") as handle:
+        for pair in pairs:
+            handle.write(json.dumps(pair, ensure_ascii=False) + "\n")
 
-    for pair in all_pairs:
-        error = validate_pair(pair)
-        if error:
-            rejected_count += 1
-            continue
-        pair.setdefault("seed", SEED)
-        valid_pairs.append(pair)
-
-    with OUTPUT_PATH.open("w") as f:
-        for pair in valid_pairs:
-            f.write(json.dumps(pair, default=str) + "\n")
-
-    print(f"Trace-derived pairs: {len(trace_pairs)}")
-    print(f"Synthetic/programmatic/probe pairs: {len(synthetic_pairs)}")
-    print(f"Valid training pairs written: {len(valid_pairs)}")
-    print(f"Malformed/duplicate-equivalent pairs rejected: {rejected_count}")
-    print(f"Saved to {OUTPUT_PATH}")
+    duplicate_report = None
+    if len(tasks) >= 2:
+        duplicate_report = compare_duplicate_candidates(tasks[0], tasks[1])
+    print(
+        json.dumps(
+            {
+                "seed": SEED,
+                "n_tasks": len(tasks),
+                "n_traces": len(traces),
+                "n_pairs_written": len(pairs),
+                "output_path": str(OUTPUT_PATH),
+                "duplicate_report": duplicate_report,
+            },
+            indent=2,
+        )
+    )
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

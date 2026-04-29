@@ -1,0 +1,502 @@
+[
+  {
+    "task_id": "TB-TR-005",
+    "source_mode": "trace_derived",
+    "failure_dimension": "thread_integrity",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Helio Metrics",
+        "role": "VP Engineering",
+        "timezone": "Africa/Nairobi"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "3 open engineering roles",
+          "signal_strength": "medium"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 7,
+        "data": 4,
+        "ml": 2
+      },
+      "prior_thread": [
+        "Prospect asked for direct evidence and no hype."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Helio Metrics is aggressively scaling and we can definitely fill the whole team. https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Helio Metrics: I noticed 3 open engineering roles. If those roles are tied to delivery pressure, would you be open to a short review this week? https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Derived from traces where no-hype instruction was ignored."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "3 open engineering roles",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "aggressively"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "definitely",
+        "fill the whole team"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-TR-006",
+    "source_mode": "trace_derived",
+    "failure_dimension": "claim_safety",
+    "difficulty": "hard",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Northstar AI",
+        "role": "CTO",
+        "timezone": "Europe/London"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "1 machine learning role",
+          "signal_strength": "low"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 2,
+        "data": 1,
+        "ml": 1
+      },
+      "prior_thread": [
+        "Prospect asked for evidence before any claim about growth."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Northstar AI is clearly behind on hiring velocity, but we can guarantee fast coverage. https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Northstar AI: I only found 1 machine learning role, so I may be missing context. If hiring speed is a live issue, would you be open to compare notes? https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Derived from traces where weak evidence led to overclaiming."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "1 machine learning role",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "clearly behind"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "guarantee"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-TR-007",
+    "source_mode": "trace_derived",
+    "failure_dimension": "output_type_control",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Consolety",
+        "role": "Support Lead",
+        "timezone": "America/Los_Angeles"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "customer confirmed replacement options already",
+          "signal_strength": "medium"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 4,
+        "data": 1,
+        "ml": 0
+      },
+      "prior_thread": [
+        "System prompt expects a tool call, not prose."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "action",
+        "expected_action_name": "exchange_delivered_order_items"
+      }
+    },
+    "candidate_output": "We can process that exchange now.",
+    "ground_truth": {
+      "preferred_output": "ACTION: exchange_delivered_order_items",
+      "expected_output_type": "action",
+      "rationale": "Derived from action-vs-text confusion in real traces."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [],
+      "forbidden_phrases": [
+        "We can process that exchange now."
+      ],
+      "forbidden_overclaiming_phrases": [
+        "guarantee"
+      ],
+      "must_end_with_calendar_link": false,
+      "requires_cta": false,
+      "expected_output_type": "action",
+      "expected_action_name": "exchange_delivered_order_items",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-PG-004",
+    "source_mode": "programmatic",
+    "failure_dimension": "timezone_scheduling",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Blue Current",
+        "role": "VP Engineering",
+        "timezone": "America/Los_Angeles"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "4 mobile roles open",
+          "signal_strength": "medium"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 6,
+        "data": 1,
+        "ml": 1
+      },
+      "prior_thread": [
+        "Prospect asked for times in America/Los_Angeles only."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Would 4pm EAT work? https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Blue Current: I saw 4 mobile roles open. If useful, I can send a couple of America/Los_Angeles options, or you can pick directly here. https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Programmatic timezone check."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "4 mobile roles open",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "4pm EAT"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "guarantee"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-PG-005",
+    "source_mode": "programmatic",
+    "failure_dimension": "claim_safety",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Juniper Grid",
+        "role": "Head of Data",
+        "timezone": "America/Chicago"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "1 analytics role",
+          "signal_strength": "low"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 3,
+        "data": 1,
+        "ml": 0
+      },
+      "prior_thread": [
+        "Prospect asked not to exaggerate urgency."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Juniper Grid is definitely ramping hard and needs outside help immediately. https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Juniper Grid: I only found 1 analytics role, so I do not want to overread the signal. If hiring support is relevant, would you be open to a brief comparison? https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Programmatic claim-safety check."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "1 analytics role",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "ramping hard"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "definitely",
+        "immediately"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-ML-004",
+    "source_mode": "multi_llm_synthesis",
+    "failure_dimension": "claim_safety",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Cobalt Stream",
+        "role": "Head of Platform",
+        "timezone": "Africa/Nairobi"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "1 platform role",
+          "signal_strength": "low"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 3,
+        "data": 1,
+        "ml": 0
+      },
+      "prior_thread": [
+        "Prospect asked for cautious wording because public evidence is thin."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Cobalt Stream is clearly behind and needs immediate rescue. https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Cobalt Stream: I only found 1 platform role, so I do not want to overread the public signal. If hiring support is relevant, would you be open to a short review? https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Placeholder-ready synthesis task for claim safety."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "1 platform role",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "clearly behind"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "immediate rescue"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-HA-003",
+    "source_mode": "hand_authored",
+    "failure_dimension": "escalation_judgment",
+    "difficulty": "hard",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Beacon Retail",
+        "role": "Support Lead",
+        "timezone": "America/Chicago"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "customer supplied conflicting payment and ownership details",
+          "signal_strength": "medium"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 3,
+        "data": 0,
+        "ml": 0
+      },
+      "prior_thread": [
+        "Policy says unresolved identity conflict requires transfer."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "action",
+        "expected_action_name": "transfer_to_human_agents"
+      }
+    },
+    "candidate_output": "ACTION: exchange_delivered_order_items",
+    "ground_truth": {
+      "preferred_output": "ACTION: transfer_to_human_agents",
+      "expected_output_type": "action",
+      "rationale": "Hand-authored adversarial escalation case."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [],
+      "forbidden_phrases": [
+        "ACTION: exchange_delivered_order_items"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "guarantee"
+      ],
+      "must_end_with_calendar_link": false,
+      "requires_cta": false,
+      "expected_output_type": "action",
+      "expected_action_name": "transfer_to_human_agents",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  }
+]

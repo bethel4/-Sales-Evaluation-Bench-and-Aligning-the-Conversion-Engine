@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tenacious-Bench Task",
+  "type": "object",
+  "required": [
+    "task_id",
+    "source_mode",
+    "failure_dimension",
+    "difficulty",
+    "inputs",
+    "candidate_output",
+    "ground_truth",
+    "rubric"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "source_mode": {
+      "type": "string",
+      "enum": [
+        "trace_derived",
+        "programmatic",
+        "multi_llm_synthesis",
+        "hand_authored"
+      ]
+    },
+    "failure_dimension": {
+      "type": "string",
+      "enum": [
+        "signal_grounding",
+        "bench_truthfulness",
+        "thread_integrity",
+        "timezone_scheduling",
+        "claim_safety",
+        "final_action_selection",
+        "escalation_judgment",
+        "output_type_control"
+      ]
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "candidate_output": {
+      "type": "string"
+    },
+    "ground_truth": {
+      "type": "object"
+    },
+    "rubric": {
+      "type": "object"
+    }
+  }
+}

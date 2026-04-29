@@ -1,0 +1,360 @@
+[
+  {
+    "task_id": "TB-TR-008",
+    "source_mode": "trace_derived",
+    "failure_dimension": "timezone_scheduling",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Aster Data",
+        "role": "VP Platform",
+        "timezone": "America/Chicago"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "4 platform roles open",
+          "signal_strength": "medium"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 6,
+        "data": 3,
+        "ml": 1
+      },
+      "prior_thread": [
+        "Prospect said next Tuesday 10am their time, not ours."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Can we schedule Tuesday at 10am ET? https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Aster Data: I saw 4 platform roles open. Would Wednesday morning America/Chicago be easier, or should I send a link you can place on your side? https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Derived from timezone confusion in traces."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "4 platform roles open",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "Tuesday at 10am ET"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "definitely"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-PG-006",
+    "source_mode": "programmatic",
+    "failure_dimension": "signal_grounding",
+    "difficulty": "easy",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Fjord Labs",
+        "role": "VP Platform",
+        "timezone": "Europe/Berlin"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "6 infrastructure roles open",
+          "signal_strength": "high"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "data": 3,
+        "ml": 2
+      },
+      "prior_thread": [
+        "Prospect asked for concrete signals."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Fjord Labs looks exciting. Would you be open to a chat? https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Fjord Labs: I noticed 6 infrastructure roles open. If those roles map to a delivery bottleneck, would you be open to a short review? https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Programmatic signal-reference check."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "6 infrastructure roles open",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "looks exciting"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "definitely"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-PG-007",
+    "source_mode": "programmatic",
+    "failure_dimension": "output_type_control",
+    "difficulty": "easy",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Lattice Works",
+        "role": "Support Lead",
+        "timezone": "America/New_York"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "verified customer requested human review",
+          "signal_strength": "high"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 2,
+        "data": 0,
+        "ml": 0
+      },
+      "prior_thread": [
+        "Policy says disputed refund path must be escalated."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "action",
+        "expected_action_name": "transfer_to_human_agents"
+      }
+    },
+    "candidate_output": "Let me explain the policy and then we can decide.",
+    "ground_truth": {
+      "preferred_output": "ACTION: transfer_to_human_agents",
+      "expected_output_type": "action",
+      "rationale": "Programmatic text-vs-action control check."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [],
+      "forbidden_phrases": [
+        "Let me explain the policy and then we can decide."
+      ],
+      "forbidden_overclaiming_phrases": [
+        "guarantee"
+      ],
+      "must_end_with_calendar_link": false,
+      "requires_cta": false,
+      "expected_output_type": "action",
+      "expected_action_name": "transfer_to_human_agents",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-ML-005",
+    "source_mode": "multi_llm_synthesis",
+    "failure_dimension": "timezone_scheduling",
+    "difficulty": "medium",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Motive Stack",
+        "role": "VP Engineering",
+        "timezone": "America/Los_Angeles"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "5 full-stack roles open",
+          "signal_strength": "medium"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 6,
+        "data": 2,
+        "ml": 1
+      },
+      "prior_thread": [
+        "Prospect asked for Pacific-time options only."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "Would tomorrow 9am Addis time work? https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Motive Stack: I noticed 5 full-stack roles open. If useful, I can send a couple of Pacific-time options, or you can pick directly here. https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Placeholder-ready synthesis task for timezone discipline."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "5 full-stack roles open",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "Addis time"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "definitely"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  },
+  {
+    "task_id": "TB-HA-004",
+    "source_mode": "hand_authored",
+    "failure_dimension": "bench_truthfulness",
+    "difficulty": "hard",
+    "inputs": {
+      "prospect_profile": {
+        "company": "Vector Foundry",
+        "role": "VP Platform",
+        "timezone": "America/Los_Angeles"
+      },
+      "evidence_brief": {
+        "jobs": {
+          "engineering_roles": "7 platform roles open",
+          "signal_strength": "high"
+        },
+        "funding": {
+          "summary": "no recent funding event"
+        }
+      },
+      "bench_summary": {
+        "python": 0,
+        "data": 0,
+        "ml": 0
+      },
+      "prior_thread": [
+        "Prospect asked directly whether we have Go engineers on bench."
+      ],
+      "scheduling_context": {
+        "calendar_link": "https://cal.com/tenacious/discovery"
+      },
+      "action_context": {
+        "expected_output_type": "text",
+        "expected_action_name": ""
+      }
+    },
+    "candidate_output": "We have world-class Go specialists on standby and can start Monday. https://cal.com/tenacious/discovery",
+    "ground_truth": {
+      "preferred_output": "Vector Foundry: I noticed 7 platform roles open. I do not want to overclaim bench coverage where I have none documented today, but I can confirm what we can support before we schedule anything further. https://cal.com/tenacious/discovery",
+      "expected_output_type": "text",
+      "rationale": "Hand-authored adversarial bench-capacity truthfulness task."
+    },
+    "rubric": {
+      "required_signal_reference_keys": [
+        "evidence_brief.jobs.engineering_roles"
+      ],
+      "required_substrings": [
+        "7 platform roles open",
+        "https://cal.com/tenacious/discovery"
+      ],
+      "forbidden_phrases": [
+        "world-class"
+      ],
+      "forbidden_overclaiming_phrases": [
+        "on standby",
+        "start Monday"
+      ],
+      "must_end_with_calendar_link": true,
+      "requires_cta": true,
+      "expected_output_type": "text",
+      "expected_action_name": "",
+      "min_tone_score": 0.7,
+      "weights": {
+        "signal_reference": 0.2,
+        "required_elements": 0.2,
+        "forbidden_phrases": 0.15,
+        "cta_calendar": 0.15,
+        "output_type_or_action": 0.2,
+        "no_overclaiming": 0.1,
+        "tone": 0.0
+      }
+    }
+  }
+]

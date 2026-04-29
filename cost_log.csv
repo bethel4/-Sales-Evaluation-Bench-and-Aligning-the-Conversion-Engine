@@ -1,0 +1,7 @@
+stage,model_tier,run_count,estimated_cost_usd,notes
+trace_to_task_abstraction,manual,8,0.00,Used existing local traces and authored benchmark abstractions.
+programmatic_synthesis,cheap,7,0.00,Deterministic committed script scaffold.
+multi_llm_placeholder_authoring,cheap,5,0.00,Placeholder-ready tasks committed without live API calls.
+judge_filter_calibration,eval_tier,1,0.00,Routed structurally in code but not executed with paid APIs yet.
+pair_building,local,1,0.00,JSONL generation is local-only.
+simpo_conversion,local,1,0.00,JSONL conversion is local-only.

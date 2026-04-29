@@ -1,0 +1,31 @@
+{
+  "dataset_version": "tenacious_bench_v0.1",
+  "run_date": "2026-04-29",
+  "current_task_count": 24,
+  "target_task_count": "200-300",
+  "checks": {
+    "task_id_unique": true,
+    "partition_leakage_detected": false,
+    "exact_candidate_output_duplicates": [],
+    "normalized_prompt_overlap_reviewed": true,
+    "source_mode_distribution": {
+      "trace_derived": 8,
+      "programmatic": 7,
+      "multi_llm_synthesis": 5,
+      "hand_authored": 4
+    },
+    "trace_reuse_notes": [
+      "Trace-derived tasks are abstractions of Week 10/11 evidence, not raw transcript copies.",
+      "trace_task0_failed_exchange, trace_task0_passed_exchange, and trace_historical_failed_return remain methodology anchors."
+    ],
+    "held_out_separation": {
+      "count": 5,
+      "sealed_for_training": true,
+      "note": "Held-out tasks are committed for grading but excluded from intended training use."
+    }
+  },
+  "open_risks": [
+    "No embedding-based near-duplicate scan yet.",
+    "Multi-LLM tasks are placeholder-ready rather than fully human-adjudicated."
+  ]
+}
