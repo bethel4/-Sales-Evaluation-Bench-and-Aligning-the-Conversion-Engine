@@ -1,360 +1,4544 @@
 [
   {
-    "task_id": "TB-TR-008",
+    "task_id": "tb_trace_0076",
+    "version": "0.1",
     "source_mode": "trace_derived",
-    "failure_dimension": "timezone_scheduling",
-    "difficulty": "medium",
-    "inputs": {
-      "prospect_profile": {
-        "company": "Aster Data",
-        "role": "VP Platform",
-        "timezone": "America/Chicago"
-      },
-      "evidence_brief": {
-        "jobs": {
-          "engineering_roles": "4 platform roles open",
-          "signal_strength": "medium"
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "created_at": "2026-05-01T01:03:16.390217+00:00",
+    "origin_trace": "0",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
         },
         "funding": {
-          "summary": "no recent funding event"
-        }
-      },
-      "bench_summary": {
-        "python": 6,
-        "data": 3,
-        "ml": 1
-      },
-      "prior_thread": [
-        "Prospect said next Tuesday 10am their time, not ours."
-      ],
-      "scheduling_context": {
-        "calendar_link": "https://cal.com/tenacious/discovery"
-      },
-      "action_context": {
-        "expected_output_type": "text",
-        "expected_action_name": ""
-      }
-    },
-    "candidate_output": "Can we schedule Tuesday at 10am ET? https://cal.com/tenacious/discovery",
-    "ground_truth": {
-      "preferred_output": "Aster Data: I saw 4 platform roles open. Would Wednesday morning America/Chicago be easier, or should I send a link you can place on your side? https://cal.com/tenacious/discovery",
-      "expected_output_type": "text",
-      "rationale": "Derived from timezone confusion in traces."
-    },
-    "rubric": {
-      "required_signal_reference_keys": [
-        "evidence_brief.jobs.engineering_roles"
-      ],
-      "required_substrings": [
-        "4 platform roles open",
-        "https://cal.com/tenacious/discovery"
-      ],
-      "forbidden_phrases": [
-        "Tuesday at 10am ET"
-      ],
-      "forbidden_overclaiming_phrases": [
-        "definitely"
-      ],
-      "must_end_with_calendar_link": true,
-      "requires_cta": true,
-      "expected_output_type": "text",
-      "expected_action_name": "",
-      "min_tone_score": 0.7,
-      "weights": {
-        "signal_reference": 0.2,
-        "required_elements": 0.2,
-        "forbidden_phrases": 0.15,
-        "cta_calendar": 0.15,
-        "output_type_or_action": 0.2,
-        "no_overclaiming": 0.1,
-        "tone": 0.0
-      }
-    }
-  },
-  {
-    "task_id": "TB-PG-006",
-    "source_mode": "programmatic",
-    "failure_dimension": "signal_grounding",
-    "difficulty": "easy",
-    "inputs": {
-      "prospect_profile": {
-        "company": "Fjord Labs",
-        "role": "VP Platform",
-        "timezone": "Europe/Berlin"
-      },
-      "evidence_brief": {
-        "jobs": {
-          "engineering_roles": "6 infrastructure roles open",
-          "signal_strength": "high"
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
         },
-        "funding": {
-          "summary": "no recent funding event"
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
         }
       },
       "bench_summary": {
         "python": 8,
-        "data": 3,
-        "ml": 2
+        "go": 0,
+        "ml": 3
       },
-      "prior_thread": [
-        "Prospect asked for concrete signals."
-      ],
-      "scheduling_context": {
-        "calendar_link": "https://cal.com/tenacious/discovery"
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a synergy partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
       },
-      "action_context": {
-        "expected_output_type": "text",
-        "expected_action_name": ""
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
       }
     },
-    "candidate_output": "Fjord Labs looks exciting. Would you be open to a chat? https://cal.com/tenacious/discovery",
     "ground_truth": {
-      "preferred_output": "Fjord Labs: I noticed 6 infrastructure roles open. If those roles map to a delivery bottleneck, would you be open to a short review? https://cal.com/tenacious/discovery",
-      "expected_output_type": "text",
-      "rationale": "Programmatic signal-reference check."
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a synergy partner and can supercharge your roadmap immediately. Don't miss out."
     },
-    "rubric": {
-      "required_signal_reference_keys": [
-        "evidence_brief.jobs.engineering_roles"
-      ],
-      "required_substrings": [
-        "6 infrastructure roles open",
-        "https://cal.com/tenacious/discovery"
-      ],
-      "forbidden_phrases": [
-        "looks exciting"
-      ],
-      "forbidden_overclaiming_phrases": [
-        "definitely"
-      ],
-      "must_end_with_calendar_link": true,
-      "requires_cta": true,
-      "expected_output_type": "text",
-      "expected_action_name": "",
-      "min_tone_score": 0.7,
-      "weights": {
-        "signal_reference": 0.2,
-        "required_elements": 0.2,
-        "forbidden_phrases": 0.15,
-        "cta_calendar": 0.15,
-        "output_type_or_action": 0.2,
-        "no_overclaiming": 0.1,
-        "tone": 0.0
-      }
-    }
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
   },
   {
-    "task_id": "TB-PG-007",
+    "task_id": "tb_prog_0116",
+    "version": "0.1",
     "source_mode": "programmatic",
-    "failure_dimension": "output_type_control",
-    "difficulty": "easy",
-    "inputs": {
-      "prospect_profile": {
-        "company": "Lattice Works",
-        "role": "Support Lead",
-        "timezone": "America/New_York"
-      },
-      "evidence_brief": {
-        "jobs": {
-          "engineering_roles": "verified customer requested human review",
-          "signal_strength": "high"
-        },
-        "funding": {
-          "summary": "no recent funding event"
-        }
-      },
-      "bench_summary": {
-        "python": 2,
-        "data": 0,
-        "ml": 0
-      },
-      "prior_thread": [
-        "Policy says disputed refund path must be escalated."
-      ],
-      "scheduling_context": {
-        "calendar_link": "https://cal.com/tenacious/discovery"
-      },
-      "action_context": {
-        "expected_output_type": "action",
-        "expected_action_name": "transfer_to_human_agents"
-      }
-    },
-    "candidate_output": "Let me explain the policy and then we can decide.",
-    "ground_truth": {
-      "preferred_output": "ACTION: transfer_to_human_agents",
-      "expected_output_type": "action",
-      "rationale": "Programmatic text-vs-action control check."
-    },
-    "rubric": {
-      "required_signal_reference_keys": [
-        "evidence_brief.jobs.engineering_roles"
-      ],
-      "required_substrings": [],
-      "forbidden_phrases": [
-        "Let me explain the policy and then we can decide."
-      ],
-      "forbidden_overclaiming_phrases": [
-        "guarantee"
-      ],
-      "must_end_with_calendar_link": false,
-      "requires_cta": false,
-      "expected_output_type": "action",
-      "expected_action_name": "transfer_to_human_agents",
-      "min_tone_score": 0.7,
-      "weights": {
-        "signal_reference": 0.2,
-        "required_elements": 0.2,
-        "forbidden_phrases": 0.15,
-        "cta_calendar": 0.15,
-        "output_type_or_action": 0.2,
-        "no_overclaiming": 0.1,
-        "tone": 0.0
-      }
-    }
-  },
-  {
-    "task_id": "TB-ML-005",
-    "source_mode": "multi_llm_synthesis",
-    "failure_dimension": "timezone_scheduling",
     "difficulty": "medium",
-    "inputs": {
-      "prospect_profile": {
-        "company": "Motive Stack",
-        "role": "VP Engineering",
-        "timezone": "America/Los_Angeles"
-      },
-      "evidence_brief": {
-        "jobs": {
-          "engineering_roles": "5 full-stack roles open",
-          "signal_strength": "medium"
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391331+00:00",
+    "parameters": {
+      "confidence": "medium",
+      "role_count": 12,
+      "stack": "infra"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
         },
         "funding": {
-          "summary": "no recent funding event"
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
         }
       },
       "bench_summary": {
-        "python": 6,
-        "data": 2,
-        "ml": 1
+        "python": 8,
+        "go": 0,
+        "ml": 3
       },
       "prior_thread": [
-        "Prospect asked for Pacific-time options only."
-      ],
-      "scheduling_context": {
-        "calendar_link": "https://cal.com/tenacious/discovery"
+        {
+          "role": "prospect",
+          "text": "Do you have infra engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our wizard team can deliver 12 infra engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
       },
-      "action_context": {
-        "expected_output_type": "text",
-        "expected_action_name": ""
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
       }
     },
-    "candidate_output": "Would tomorrow 9am Addis time work? https://cal.com/tenacious/discovery",
     "ground_truth": {
-      "preferred_output": "Motive Stack: I noticed 5 full-stack roles open. If useful, I can send a couple of Pacific-time options, or you can pick directly here. https://cal.com/tenacious/discovery",
-      "expected_output_type": "text",
-      "rationale": "Placeholder-ready synthesis task for timezone discipline."
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our wizard team can deliver 12 infra engineers immediately and skyrocket execution."
     },
-    "rubric": {
-      "required_signal_reference_keys": [
-        "evidence_brief.jobs.engineering_roles"
-      ],
-      "required_substrings": [
-        "5 full-stack roles open",
-        "https://cal.com/tenacious/discovery"
-      ],
-      "forbidden_phrases": [
-        "Addis time"
-      ],
-      "forbidden_overclaiming_phrases": [
-        "definitely"
-      ],
-      "must_end_with_calendar_link": true,
-      "requires_cta": true,
-      "expected_output_type": "text",
-      "expected_action_name": "",
-      "min_tone_score": 0.7,
-      "weights": {
-        "signal_reference": 0.2,
-        "required_elements": 0.2,
-        "forbidden_phrases": 0.15,
-        "cta_calendar": 0.15,
-        "output_type_or_action": 0.2,
-        "no_overclaiming": 0.1,
-        "tone": 0.0
-      }
-    }
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
   },
   {
-    "task_id": "TB-HA-004",
-    "source_mode": "hand_authored",
-    "failure_dimension": "bench_truthfulness",
+    "task_id": "tb_trace_0002",
+    "version": "0.1",
+    "source_mode": "trace_derived",
     "difficulty": "hard",
-    "inputs": {
-      "prospect_profile": {
-        "company": "Vector Foundry",
-        "role": "VP Platform",
-        "timezone": "America/Los_Angeles"
-      },
-      "evidence_brief": {
-        "jobs": {
-          "engineering_roles": "7 platform roles open",
-          "signal_strength": "high"
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.386519+00:00",
+    "origin_trace": "12",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
         },
         "funding": {
-          "summary": "no recent funding event"
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
         }
       },
       "bench_summary": {
-        "python": 0,
-        "data": 0,
-        "ml": 0
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a top talent partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a top talent partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0089",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.390990+00:00",
+    "parameters": {
+      "confidence": "low",
+      "role_count": 12,
+      "stack": "python"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
       },
       "prior_thread": [
-        "Prospect asked directly whether we have Go engineers on bench."
-      ],
-      "scheduling_context": {
-        "calendar_link": "https://cal.com/tenacious/discovery"
+        {
+          "role": "prospect",
+          "text": "Do you have python engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our 10x team can deliver 12 python engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
       },
-      "action_context": {
-        "expected_output_type": "text",
-        "expected_action_name": ""
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
       }
     },
-    "candidate_output": "We have world-class Go specialists on standby and can start Monday. https://cal.com/tenacious/discovery",
     "ground_truth": {
-      "preferred_output": "Vector Foundry: I noticed 7 platform roles open. I do not want to overclaim bench coverage where I have none documented today, but I can confirm what we can support before we schedule anything further. https://cal.com/tenacious/discovery",
-      "expected_output_type": "text",
-      "rationale": "Hand-authored adversarial bench-capacity truthfulness task."
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our 10x team can deliver 12 python engineers immediately and skyrocket execution."
     },
-    "rubric": {
-      "required_signal_reference_keys": [
-        "evidence_brief.jobs.engineering_roles"
-      ],
-      "required_substrings": [
-        "7 platform roles open",
-        "https://cal.com/tenacious/discovery"
-      ],
-      "forbidden_phrases": [
-        "world-class"
-      ],
-      "forbidden_overclaiming_phrases": [
-        "on standby",
-        "start Monday"
-      ],
-      "must_end_with_calendar_link": true,
-      "requires_cta": true,
-      "expected_output_type": "text",
-      "expected_action_name": "",
-      "min_tone_score": 0.7,
-      "weights": {
-        "signal_reference": 0.2,
-        "required_elements": 0.2,
-        "forbidden_phrases": 0.15,
-        "cta_calendar": 0.15,
-        "output_type_or_action": 0.2,
-        "no_overclaiming": 0.1,
-        "tone": 0.0
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0100",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "medium",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391139+00:00",
+    "parameters": {
+      "confidence": "medium",
+      "role_count": 7,
+      "stack": "data"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have data engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our disruptor team can deliver 7 data engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
       }
-    }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our disruptor team can deliver 7 data engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0171",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "timezone_geographic_context",
+    "description": "Agent must explicitly state timezone context for cross-region scheduling.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by East Africa scheduling examples where timezone ambiguity caused planning risk.",
+    "created_at": "2026-05-01T01:03:16.392115+00:00",
+    "seed": "Nairobi prospect needs explicit EAT timezone.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_4",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+    "rejected": "I hope this email finds you well. We are a world-class partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "state_timezone_explicitly",
+      "correct_reasoning": "Cross-region outreach needs explicit timezone anchoring.",
+      "example_correct_output": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+      "example_wrong_output": "I hope this email finds you well. We are a world-class partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_trace_0044",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.389498+00:00",
+    "origin_trace": "18",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a Quick chat partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a Quick chat partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_hand_0230",
+    "version": "0.1",
+    "source_mode": "hand_authored",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "probe_id": "PROBE-005",
+    "created_at": "2026-05-01T01:03:16.392862+00:00",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_2",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "What does an engagement typically cost?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Quick question \u2014 our I noticed you're a approach is a game-changer for teams like yours. You'll regret missing this.",
+    "rejection_reason": "style_guide_bad_draft_marker",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Quick question \u2014 our I noticed you're a approach is a game-changer for teams like yours. You'll regret missing this."
+    },
+    "leakage_prevention": {
+      "chosen_model": "hand_authored",
+      "judge_model": "hand_authored",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_hand_0210",
+    "version": "0.1",
+    "source_mode": "hand_authored",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "probe_id": "PROBE-005",
+    "created_at": "2026-05-01T01:03:16.392604+00:00",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_2",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "What does an engagement typically cost?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Quick question \u2014 our I hope this email finds you well approach is a game-changer for teams like yours. You'll regret missing this.",
+    "rejection_reason": "style_guide_bad_draft_marker",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Quick question \u2014 our I hope this email finds you well approach is a game-changer for teams like yours. You'll regret missing this."
+    },
+    "leakage_prevention": {
+      "chosen_model": "hand_authored",
+      "judge_model": "hand_authored",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0028",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "created_at": "2026-05-01T01:03:16.388778+00:00",
+    "origin_trace": "17",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a our 20 years of experience partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a our 20 years of experience partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_hand_0206",
+    "version": "0.1",
+    "source_mode": "hand_authored",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "probe_id": "PROBE-005",
+    "created_at": "2026-05-01T01:03:16.392557+00:00",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_2",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "What does an engagement typically cost?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Quick question \u2014 our wizard approach is a game-changer for teams like yours. You'll regret missing this.",
+    "rejection_reason": "style_guide_bad_draft_marker",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Quick question \u2014 our wizard approach is a game-changer for teams like yours. You'll regret missing this."
+    },
+    "leakage_prevention": {
+      "chosen_model": "hand_authored",
+      "judge_model": "hand_authored",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_hand_0225",
+    "version": "0.1",
+    "source_mode": "hand_authored",
+    "difficulty": "hard",
+    "failure_dimension": "multi_turn_tone_preservation",
+    "description": "Agent must remain firm and professional under pressure without apologetic drift.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by sustained objection threads where tone drifted into over-apology.",
+    "probe_id": "PROBE-004",
+    "created_at": "2026-05-01T01:03:16.392802+00:00",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "What does an engagement typically cost?"
+        }
+      ]
+    },
+    "chosen": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+    "rejected": "Quick question \u2014 our Don't miss out approach is a game-changer for teams like yours. You'll regret missing this.",
+    "rejection_reason": "style_guide_bad_draft_marker",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "maintain_professional_tone",
+      "correct_reasoning": "Professional tone must be preserved under objection pressure.",
+      "example_correct_output": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+      "example_wrong_output": "Quick question \u2014 our Don't miss out approach is a game-changer for teams like yours. You'll regret missing this."
+    },
+    "leakage_prevention": {
+      "chosen_model": "hand_authored",
+      "judge_model": "hand_authored",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0108",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "medium",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.391238+00:00",
+    "parameters": {
+      "confidence": "medium",
+      "role_count": 2,
+      "stack": "go"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have go engineers available?"
+        }
+      ]
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "Our our 20 years of experience team can deliver 2 go engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "Our our 20 years of experience team can deliver 2 go engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_hand_0220",
+    "version": "0.1",
+    "source_mode": "hand_authored",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "probe_id": "PROBE-009",
+    "created_at": "2026-05-01T01:03:16.392725+00:00",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_2",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "What does an engagement typically cost?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Quick question \u2014 our disruptor approach is a game-changer for teams like yours. You'll regret missing this.",
+    "rejection_reason": "style_guide_bad_draft_marker",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Quick question \u2014 our disruptor approach is a game-changer for teams like yours. You'll regret missing this."
+    },
+    "leakage_prevention": {
+      "chosen_model": "hand_authored",
+      "judge_model": "hand_authored",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0021",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.388646+00:00",
+    "origin_trace": "0",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "I hope this email finds you well. We are a paradigm shift partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "I hope this email finds you well. We are a paradigm shift partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0069",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.390112+00:00",
+    "origin_trace": "18",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "I hope this email finds you well. We are a 10x partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "I hope this email finds you well. We are a 10x partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0147",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391783+00:00",
+    "parameters": {
+      "confidence": "none",
+      "role_count": 2,
+      "stack": "infra"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have infra engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our skyrocket team can deliver 2 infra engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our skyrocket team can deliver 2 infra engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0141",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391694+00:00",
+    "parameters": {
+      "confidence": "low",
+      "role_count": 15,
+      "stack": "infra"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have infra engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our world-class team can deliver 15 infra engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our world-class team can deliver 15 infra engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0088",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "medium",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.390979+00:00",
+    "parameters": {
+      "confidence": "high",
+      "role_count": 15,
+      "stack": "python"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have python engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our supercharge team can deliver 15 python engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our supercharge team can deliver 15 python engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0041",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.389329+00:00",
+    "origin_trace": "0",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a just following up partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a just following up partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0155",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "timezone_geographic_context",
+    "description": "Agent must explicitly state timezone context for cross-region scheduling.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by East Africa scheduling examples where timezone ambiguity caused planning risk.",
+    "created_at": "2026-05-01T01:03:16.391917+00:00",
+    "seed": "Nairobi prospect needs explicit EAT timezone.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_4",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+    "rejected": "I hope this email finds you well. We are a synergize partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "state_timezone_explicitly",
+      "correct_reasoning": "Cross-region outreach needs explicit timezone anchoring.",
+      "example_correct_output": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+      "example_wrong_output": "I hope this email finds you well. We are a synergize partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0197",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.392437+00:00",
+    "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "I hope this email finds you well. We are a our 500 employees partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "I hope this email finds you well. We are a our 500 employees partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_prog_0087",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.390966+00:00",
+    "parameters": {
+      "confidence": "low",
+      "role_count": 2,
+      "stack": "go"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have go engineers available?"
+        }
+      ]
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "Our skyrocket team can deliver 2 go engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "Our skyrocket team can deliver 2 go engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0122",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391405+00:00",
+    "parameters": {
+      "confidence": "low",
+      "role_count": 15,
+      "stack": "ml"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have ml engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our circling back team can deliver 15 ml engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our circling back team can deliver 15 ml engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0061",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "created_at": "2026-05-01T01:03:16.389968+00:00",
+    "origin_trace": "0",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a world-class partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a world-class partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0156",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391930+00:00",
+    "seed": "Low confidence competitor-gap data must be framed as questions.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a synergy partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a synergy partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_prog_0139",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391671+00:00",
+    "parameters": {
+      "confidence": "low",
+      "role_count": 15,
+      "stack": "data"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have data engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our I'll keep this brief team can deliver 15 data engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our I'll keep this brief team can deliver 15 data engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0049",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "created_at": "2026-05-01T01:03:16.389633+00:00",
+    "origin_trace": "18",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a game-changer partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a game-changer partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0094",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "medium",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.391064+00:00",
+    "parameters": {
+      "confidence": "high",
+      "role_count": 4,
+      "stack": "go"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have go engineers available?"
+        }
+      ]
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "Our Quick chat team can deliver 4 go engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "Our Quick chat team can deliver 4 go engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0062",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.389983+00:00",
+    "origin_trace": "12",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a top talent partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a top talent partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0039",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.389265+00:00",
+    "origin_trace": "18",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "I hope this email finds you well. We are a 10x partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "I hope this email finds you well. We are a 10x partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_hand_0213",
+    "version": "0.1",
+    "source_mode": "hand_authored",
+    "difficulty": "hard",
+    "failure_dimension": "multi_turn_tone_preservation",
+    "description": "Agent must remain firm and professional under pressure without apologetic drift.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by sustained objection threads where tone drifted into over-apology.",
+    "probe_id": "PROBE-004",
+    "created_at": "2026-05-01T01:03:16.392639+00:00",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "What does an engagement typically cost?"
+        }
+      ]
+    },
+    "chosen": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+    "rejected": "Quick question \u2014 our Quick question approach is a game-changer for teams like yours. You'll regret missing this.",
+    "rejection_reason": "style_guide_bad_draft_marker",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "maintain_professional_tone",
+      "correct_reasoning": "Professional tone must be preserved under objection pressure.",
+      "example_correct_output": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+      "example_wrong_output": "Quick question \u2014 our Quick question approach is a game-changer for teams like yours. You'll regret missing this."
+    },
+    "leakage_prevention": {
+      "chosen_model": "hand_authored",
+      "judge_model": "hand_authored",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0188",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.392326+00:00",
+    "seed": "Low confidence competitor-gap data must be framed as questions.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a ecosystem partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a ecosystem partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0172",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.392127+00:00",
+    "seed": "Low confidence competitor-gap data must be framed as questions.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a top talent partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a top talent partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0199",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "timezone_geographic_context",
+    "description": "Agent must explicitly state timezone context for cross-region scheduling.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by East Africa scheduling examples where timezone ambiguity caused planning risk.",
+    "created_at": "2026-05-01T01:03:16.392460+00:00",
+    "seed": "Nairobi prospect needs explicit EAT timezone.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_4",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+    "rejected": "I hope this email finds you well. We are a I'll keep this brief partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "state_timezone_explicitly",
+      "correct_reasoning": "Cross-region outreach needs explicit timezone anchoring.",
+      "example_correct_output": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+      "example_wrong_output": "I hope this email finds you well. We are a I'll keep this brief partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_trace_0068",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.390092+00:00",
+    "origin_trace": "17",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a supercharge partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a supercharge partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_trace_0040",
+    "version": "0.1",
+    "source_mode": "trace_derived",
+    "difficulty": "hard",
+    "failure_dimension": "decision_sequencing",
+    "description": "Agent must take the correct action order and avoid premature commitments.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by trace recoveries where an unnecessary wrong first step was taken before eventual correction.",
+    "created_at": "2026-05-01T01:03:16.389299+00:00",
+    "origin_trace": "45",
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a I hope this email finds you well partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_from_bad_draft",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "take_correct_next_action",
+      "correct_reasoning": "Wrong-first-action patterns are penalized even if later recovery occurs.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a I hope this email finds you well partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0189",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.392339+00:00",
+    "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "I hope this email finds you well. We are a game-changer partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "I hope this email finds you well. We are a game-changer partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_prog_0113",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "medium",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391297+00:00",
+    "parameters": {
+      "confidence": "high",
+      "role_count": 4,
+      "stack": "infra"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have infra engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our A-players team can deliver 4 infra engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our A-players team can deliver 4 infra engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_prog_0126",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "medium",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391500+00:00",
+    "parameters": {
+      "confidence": "high",
+      "role_count": 12,
+      "stack": "go"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have go engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our synergy team can deliver 12 go engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our synergy team can deliver 12 go engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0192",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.392376+00:00",
+    "seed": "Low confidence competitor-gap data must be framed as questions.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a our proprietary partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a our proprietary partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0200",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.392472+00:00",
+    "seed": "Low confidence competitor-gap data must be framed as questions.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "I hope this email finds you well. We are a I noticed you're a partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "I hope this email finds you well. We are a I noticed you're a partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0175",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "timezone_geographic_context",
+    "description": "Agent must explicitly state timezone context for cross-region scheduling.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by East Africa scheduling examples where timezone ambiguity caused planning risk.",
+    "created_at": "2026-05-01T01:03:16.392166+00:00",
+    "seed": "Nairobi prospect needs explicit EAT timezone.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_4",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+    "rejected": "I hope this email finds you well. We are a ninja partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "state_timezone_explicitly",
+      "correct_reasoning": "Cross-region outreach needs explicit timezone anchoring.",
+      "example_correct_output": "Thursday at 2pm EAT works on our side. Would that time suit your team?",
+      "example_wrong_output": "I hope this email finds you well. We are a ninja partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0158",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "multi_turn_tone_preservation",
+    "description": "Agent must remain firm and professional under pressure without apologetic drift.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by sustained objection threads where tone drifted into over-apology.",
+    "created_at": "2026-05-01T01:03:16.391955+00:00",
+    "seed": "Sustained objection pressure should not trigger over-apology.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+    "rejected": "I hope this email finds you well. We are a ecosystem partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "maintain_professional_tone",
+      "correct_reasoning": "Professional tone must be preserved under objection pressure.",
+      "example_correct_output": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+      "example_wrong_output": "I hope this email finds you well. We are a ecosystem partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_synth_0181",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "bench_gate_enforcement",
+    "description": "Agent must not commit staffing capacity before checking bench availability.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-003 where bench availability should be checked before any staffing commitment.",
+    "created_at": "2026-05-01T01:03:16.392240+00:00",
+    "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+    "rejected": "I hope this email finds you well. We are a just following up partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_premature_commit": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "3 Go engineers",
+          "starting next month",
+          "available immediately"
+        ],
+        "points": 3
+      },
+      "route_to_human": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "delivery team",
+          "confirm availability",
+          "check capacity"
+        ],
+        "points": 2
+      },
+      "no_capacity_promise": {
+        "check_type": "absence",
+        "absent_phrases": [
+          "we can guarantee"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "route_to_human",
+      "correct_reasoning": "Bench hard-gate requires verification before capacity claims.",
+      "example_correct_output": "Hi SyntheticCo, before we discuss delivery scope, I want our delivery team to confirm current staffing availability so I can share accurate numbers.",
+      "example_wrong_output": "I hope this email finds you well. We are a just following up partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
+  },
+  {
+    "task_id": "tb_prog_0092",
+    "version": "0.1",
+    "source_mode": "programmatic",
+    "difficulty": "hard",
+    "failure_dimension": "confidence_aware_phrasing",
+    "description": "Agent must hedge at medium confidence and ask at low confidence without over-claiming.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by PROBE-002 where low-confidence evidence triggered over-assertive language.",
+    "created_at": "2026-05-01T01:03:16.391036+00:00",
+    "parameters": {
+      "confidence": "low",
+      "role_count": 7,
+      "stack": "python"
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 1,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": [
+        {
+          "role": "prospect",
+          "text": "Do you have python engineers available?"
+        }
+      ]
+    },
+    "chosen": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+    "rejected": "Our circling back team can deliver 7 python engineers immediately and skyrocket execution.",
+    "rejection_reason": "style_guide_plus_bench_violation",
+    "scoring_rubric": {
+      "no_overclaiming": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "aggressively",
+          "tripling",
+          "explosive growth"
+        ],
+        "points": 3
+      },
+      "correct_register": {
+        "check_type": "register_check",
+        "required_patterns": [
+          "?",
+          "it looks like",
+          "it appears",
+          "are you finding"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "days_ago"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "ask_or_hedge",
+      "correct_reasoning": "Confidence level should directly control phrasing strength.",
+      "example_correct_output": "It looks like hiring demand may be increasing. Are you finding it harder to keep roadmap delivery on pace?",
+      "example_wrong_output": "Our circling back team can deliver 7 python engineers immediately and skyrocket execution."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5
+  },
+  {
+    "task_id": "tb_synth_0194",
+    "version": "0.1",
+    "source_mode": "multi_llm_synthesis",
+    "difficulty": "hard",
+    "failure_dimension": "multi_turn_tone_preservation",
+    "description": "Agent must remain firm and professional under pressure without apologetic drift.",
+    "WHY_THIS_TASK_EXISTS": "Inspired by sustained objection threads where tone drifted into over-apology.",
+    "created_at": "2026-05-01T01:03:16.392400+00:00",
+    "seed": "Sustained objection pressure should not trigger over-apology.",
+    "judge_scores": {
+      "coherence": 4,
+      "verifiability": 4,
+      "rubric_clarity": 4
+    },
+    "input": {
+      "hiring_signal_brief": {
+        "company": {
+          "name": "SyntheticCo",
+          "employee_count": 60,
+          "country": "GB"
+        },
+        "funding": {
+          "funded": true,
+          "days_ago": 60,
+          "confidence": "high"
+        },
+        "jobs": {
+          "engineering_roles": 7,
+          "signal_strength": "medium",
+          "confidence": "medium"
+        },
+        "layoffs": {
+          "had_layoff": false
+        },
+        "ai_maturity": {
+          "score": 2,
+          "confidence": "medium"
+        },
+        "icp_classification": {
+          "segment": "segment_1",
+          "confidence": 0.82
+        }
+      },
+      "bench_summary": {
+        "python": 8,
+        "go": 0,
+        "ml": 3
+      },
+      "prior_thread": []
+    },
+    "chosen": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+    "rejected": "I hope this email finds you well. We are a You'll regret missing this partner and can supercharge your roadmap immediately. Don't miss out.",
+    "rejection_reason": "style_guide_violation_seeded",
+    "scoring_rubric": {
+      "no_wrong_first_action": {
+        "check_type": "negative_keyword",
+        "banned_phrases": [
+          "I understand your concerns",
+          "I am so sorry",
+          "do not want to bother"
+        ],
+        "points": 3
+      },
+      "correct_action": {
+        "check_type": "positive_keyword",
+        "required_phrases": [
+          "worth a conversation",
+          "let me check",
+          "delivery team",
+          "EAT",
+          "?"
+        ],
+        "points": 2
+      },
+      "grounded": {
+        "check_type": "grounding_check",
+        "brief_references": [
+          "capacity",
+          "headcount"
+        ],
+        "points": 2
+      }
+    },
+    "ground_truth": {
+      "correct_action": "maintain_professional_tone",
+      "correct_reasoning": "Professional tone must be preserved under objection pressure.",
+      "example_correct_output": "Fair pushback. If helpful, I can share two concrete examples from similar teams and you can decide if a short call is worth it.",
+      "example_wrong_output": "I hope this email finds you well. We are a You'll regret missing this partner and can supercharge your roadmap immediately. Don't miss out."
+    },
+    "leakage_prevention": {
+      "generation_model": "qwen/qwen3-30b-a3b",
+      "judge_model": "deepseek/deepseek-chat",
+      "same_model": false
+    },
+    "max_score": 7,
+    "pass_threshold": 5,
+    "authoring_note": "deterministic_fallback"
   }
 ]

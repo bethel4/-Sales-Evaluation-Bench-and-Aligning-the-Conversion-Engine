@@ -92,6 +92,24 @@ Path B requires judge separation. This repo therefore documents two judge tiers 
 
 The scripts explicitly reject same-model generate-and-judge assignments. That policy is more important than the current placeholder models themselves, because leakage prevention is a structural requirement of the path.
 
+## Preference Leakage Prevention
+
+- Different model families are used for generation and judgment
+- Routing policy defined in [generation_scripts/leakage_prevention.json](generation_scripts/leakage_prevention.json)
+- Enforced in code with no shared model paths (`call_generation` uses MODEL_A only; `call_judge` uses MODEL_B only)
+- Each task logs generation and judge model identifiers in its `leakage_prevention` field; synthesized runs also emit routing rows in `generation_scripts/generation_log.jsonl` when APIs are invoked
+- Violations (`same_model: true`) are blocked at runtime
+
+## Style Guide as Scoring Source of Truth
+
+The Tenacious Style Guide v2 is treated as a first-class artifact in both generation and scoring. Style guide rules are translated into mechanical evaluator checks so grading is explicit and reproducible rather than ad-hoc.
+
+- style guide rules become mechanical evaluator checks
+- GOOD drafts become chosen examples
+- BAD drafts become rejected examples
+- banned phrases become deterministic negative checks
+- tone markers become rubric dimensions
+
 ## Honest Current Status
 
 What is complete:

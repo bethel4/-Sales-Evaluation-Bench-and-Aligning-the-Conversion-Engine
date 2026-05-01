@@ -1,0 +1,139 @@
+{
+  "_source": "Tenacious Style Guide v2 — Banned Phrases section",
+  "_purpose": "Loaded at runtime by scoring_evaluator.py negative_keyword checks. Update this file when Style Guide is revised — the scorer picks up changes automatically without code changes.",
+  "_last_updated": "2026-04-30",
+
+  "cold_outreach_banned": [
+    "world-class",
+    "top talent",
+    "A-players",
+    "rockstar",
+    "ninja",
+    "wizard",
+    "skyrocket",
+    "supercharge",
+    "10x",
+    "I hope this email finds you well",
+    "just following up",
+    "circling back",
+    "Quick question",
+    "Quick chat",
+    "synergize",
+    "synergy",
+    "leverage",
+    "ecosystem",
+    "game-changer",
+    "disruptor",
+    "paradigm shift",
+    "our proprietary",
+    "our AI-powered",
+    "You'll regret missing this",
+    "Don't miss out",
+    "Per my last email",
+    "our 500 employees",
+    "our 20 years of experience",
+    "I'll keep this brief",
+    "I noticed you're a"
+  ],
+
+  "subject_line_banned": [
+    "Quick",
+    "Just",
+    "Hey",
+    "URGENT",
+    "world-class",
+    "top talent"
+  ],
+
+  "low_confidence_banned": [
+    "aggressively",
+    "aggressive hiring",
+    "tripling",
+    "rapidly",
+    "explosive",
+    "massive",
+    "dramatically",
+    "clearly hiring",
+    "obviously scaling",
+    "clearly",
+    "obviously",
+    "scale aggressively",
+    "always hit a wall",
+    "you must be feeling"
+  ],
+
+  "bench_external_banned": [
+    "bench",
+    "our bench",
+    "bench is deep",
+    "bench capacity"
+  ],
+
+  "over_apologetic_banned": [
+    "I completely understand your concerns",
+    "I am so sorry if I have been pushy",
+    "I don't want to bother you",
+    "I don't want to push",
+    "sorry for reaching out",
+    "I know you probably get a lot of emails",
+    "I apologize for",
+    "per my last three emails"
+  ],
+
+  "condescending_banned": [
+    "falling behind",
+    "behind the curve",
+    "you need to",
+    "you should",
+    "you are falling behind",
+    "your AI maturity is behind",
+    "catch up",
+    "close the gap",
+    "you have not yet made",
+    "your leadership has not"
+  ],
+
+  "fabrication_risk": [
+    "congratulations on your",
+    "as discussed on our call",
+    "as you mentioned",
+    "your recent Series C",
+    "your $40M",
+    "your $50M",
+    "your $100M"
+  ],
+
+  "pricing_banned": [
+    "$1,200,000",
+    "$45,000 per month per engineer",
+    "30% off",
+    "50% discount",
+    "limited time offer",
+    "last open slot",
+    "waitlist",
+    "cohort"
+  ],
+
+  "tone_markers": {
+    "direct": {
+      "score_5_signals": ["one clear ask", "subject states intent", "body under 120 words"],
+      "score_2_signals": ["Quick", "Just", "Hey", "45-minute call", "multiple asks"]
+    },
+    "grounded": {
+      "score_5_signals": ["named funding amount", "named role count", "named peer company", "named layoff event"],
+      "score_2_signals": ["no signal named", "asserted on weak signal", "generic claim"]
+    },
+    "honest": {
+      "score_5_signals": ["names what brief does not show", "interrogative for low confidence", "refuses unsupported bench commit"],
+      "score_2_signals": ["asserts unsupported claims", "commits bench beyond bench_summary", "quotes TCV outside public bands"]
+    },
+    "professional": {
+      "score_5_signals": ["no banned phrases", "no bench externally", "CTO/founder calibrated language"],
+      "score_2_signals": ["banned phrase present", "bench used to prospect", "consultant jargon"]
+    },
+    "non_condescending": {
+      "score_5_signals": ["gap as research finding", "gap as question", "explicit acknowledgement prospect may have considered"],
+      "score_2_signals": ["falling behind", "missing", "behind the curve", "you need to", "assumes reasoning"]
+    }
+  }
+}

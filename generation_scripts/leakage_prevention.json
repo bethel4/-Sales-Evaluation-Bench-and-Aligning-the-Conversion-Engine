@@ -1,0 +1,66 @@
+{
+  "_purpose": "Documents the model rotation policy that prevents preference leakage in multi-LLM synthesis tasks. Required by Li et al. (2025) and the Week 11 methodology grading criterion.",
+  "_reference": "Preference Leakage: A Contamination Problem in LLM-as-a-Judge (Li et al., 2025)",
+  "_last_updated": "2026-04-30",
+
+  "policy_summary": "No single model is used to both generate AND judge the same task. Model families are rotated across generation and judgment roles. This prevents the judge from systematically inflating quality scores for outputs that share the generation model's stylistic fingerprint.",
+
+  "model_routing": {
+    "MODEL_A": {
+      "name": "qwen/qwen3-30b-a3b",
+      "family": "Qwen",
+      "provider": "Alibaba / DeepInfra",
+      "roles": ["chosen_rewrite_generation", "worse_version_generation", "multi_llm_seed_generation"],
+      "never_used_for": ["quality_judgment", "judge_filtering"],
+      "cost_per_1m_tokens": 0.10,
+      "temperature_generation": 0.7,
+      "temperature_verification": 0.3
+    },
+    "MODEL_B": {
+      "name": "deepseek/deepseek-chat",
+      "family": "DeepSeek",
+      "provider": "DeepSeek",
+      "roles": ["quality_judgment", "judge_filtering", "pairwise_comparison"],
+      "never_used_for": ["chosen_rewrite_generation", "seed_generation"],
+      "cost_per_1m_tokens": 0.14,
+      "temperature": 0.0,
+      "rationale": "DeepSeek is a different model family from Qwen. Using a different family for judgment eliminates the stylistic correlation that causes preference leakage. DeepSeek temperature=0 ensures deterministic, reproducible quality scores."
+    },
+    "EVAL_TIER": {
+      "name": "anthropic/claude-sonnet-4-6",
+      "family": "Anthropic Claude",
+      "roles": ["held_out_calibration_sample_only"],
+      "never_used_for": ["training_data_generation", "routine_judge_filtering"],
+      "rationale": "Eval-tier model used only for spot-checking 50 sampled tasks to calibrate cheap-model judge scores. Not used during Days 2-3 dataset authoring per cost discipline rules."
+    }
+  },
+
+  "rotation_enforcement": {
+    "code_location": "generation_scripts/generate_all_tasks.py — call_llm() function",
+    "enforcement_mechanism": "MODEL_A and MODEL_B are defined as constants at the top of the script. The generate step always passes MODEL_A. The judge step always passes MODEL_B. There is no code path that uses the same model for both steps on the same task.",
+    "per_task_audit_field": "Every multi-LLM synthesis task contains a leakage_prevention dict: {generation_model: MODEL_A, judge_model: MODEL_B, same_model: false}. The same_model field must always be false. Any task where same_model=true is rejected by the contamination check."
+  },
+
+  "judge_filter_thresholds": {
+    "dimensions": ["input_coherence", "ground_truth_verifiability", "rubric_application_clarity"],
+    "scale": "1-5 per dimension",
+    "inclusion_threshold": "ALL dimensions must score >= 4",
+    "exclusion_behavior": "Tasks below threshold are discarded, not revised. Revising filtered tasks risks introducing author bias into synthetic data (Liu et al., COLM 2024).",
+    "calibration_sample": "50 tasks spot-checked with EVAL_TIER (claude-sonnet-4-6) to verify cheap-model (MODEL_B) judgment is calibrated. If cheap-model scores diverge from eval-tier scores by more than 0.8 average absolute difference, the threshold is adjusted."
+  },
+
+  "pairwise_comparison_policy": {
+    "trigger": "Two synthesis paths produce tasks with embedding similarity >= 0.90",
+    "method": "MODEL_B judges both tasks pairwise: which is more diagnostic for the target failure dimension?",
+    "outcome": "Higher-diagnostic task included, lower discarded",
+    "code_location": "generation_scripts/generate_all_tasks.py — _ngram_contamination_check() triggers pairwise review flag"
+  },
+
+  "hand_authored_exception": {
+    "applies_to": "Mode 4 (hand_authored) tasks only",
+    "policy": "Hand-authored tasks have leakage_prevention.chosen_model = 'hand_authored' and leakage_prevention.judge_model = 'hand_authored'. No LLM was used for either generation or judgment. The same_model field is still false because no model was used at all.",
+    "rationale": "Hand-authored tasks cannot have preference leakage because no model preferences are encoded. The author's preferences are encoded instead — this is documented as a known limitation in datasheet.md Section 7."
+  },
+
+  "audit_log": "generation_scripts/generation_log.jsonl records every API call with timestamp, model, role, tokens, cost, and task_id. Auditors can verify the rotation policy was followed by checking that no task_id appears with MODEL_A in a judgment role or MODEL_B in a generation role."
+}

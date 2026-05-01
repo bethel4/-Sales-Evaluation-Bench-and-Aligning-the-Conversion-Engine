@@ -119,6 +119,12 @@ Preprocessing steps for the current scaffold:
 - partitioned into train/dev/held_out
 - ran simple contamination checks: id uniqueness, exact duplicate output detection, normalized prompt overlap, and split leakage review
 
+The Tenacious Style Guide v2 is used as the rubric source of truth. Its banned phrases are loaded into scoring_evaluator.py, its good/bad drafts seed generation modes, and its tone markers define preference labels for SimPO.
+
+Structured bans and tone-marker metadata live in [data/style_guide_v2.json](data/style_guide_v2.json); the scorer prefers this file automatically over the legacy flat list.
+
+The generation pipeline enforces a strict model-rotation policy (Qwen for generation, DeepSeek for judgment) to prevent preference leakage (Li et al., 2025).
+
 The current preprocessing is sufficient for an interim scaffold but not the final release standard.
 
 ## Uses
