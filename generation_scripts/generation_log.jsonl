@@ -1,230 +1,230 @@
-{"timestamp": "2026-05-01T01:03:16.386501+00:00", "event": "task_generated", "task_id": "tb_trace_0001", "meta": {"mode": "trace_derived", "style_guide_phrase": "world-class"}}
-{"timestamp": "2026-05-01T01:03:16.386532+00:00", "event": "task_generated", "task_id": "tb_trace_0002", "meta": {"mode": "trace_derived", "style_guide_phrase": "top talent"}}
-{"timestamp": "2026-05-01T01:03:16.386549+00:00", "event": "task_generated", "task_id": "tb_trace_0003", "meta": {"mode": "trace_derived", "style_guide_phrase": "A-players"}}
-{"timestamp": "2026-05-01T01:03:16.386565+00:00", "event": "task_generated", "task_id": "tb_trace_0004", "meta": {"mode": "trace_derived", "style_guide_phrase": "rockstar"}}
-{"timestamp": "2026-05-01T01:03:16.386580+00:00", "event": "task_generated", "task_id": "tb_trace_0005", "meta": {"mode": "trace_derived", "style_guide_phrase": "ninja"}}
-{"timestamp": "2026-05-01T01:03:16.388399+00:00", "event": "task_generated", "task_id": "tb_trace_0006", "meta": {"mode": "trace_derived", "style_guide_phrase": "wizard"}}
-{"timestamp": "2026-05-01T01:03:16.388438+00:00", "event": "task_generated", "task_id": "tb_trace_0007", "meta": {"mode": "trace_derived", "style_guide_phrase": "skyrocket"}}
-{"timestamp": "2026-05-01T01:03:16.388457+00:00", "event": "task_generated", "task_id": "tb_trace_0008", "meta": {"mode": "trace_derived", "style_guide_phrase": "supercharge"}}
-{"timestamp": "2026-05-01T01:03:16.388470+00:00", "event": "task_generated", "task_id": "tb_trace_0009", "meta": {"mode": "trace_derived", "style_guide_phrase": "10x"}}
-{"timestamp": "2026-05-01T01:03:16.388487+00:00", "event": "task_generated", "task_id": "tb_trace_0010", "meta": {"mode": "trace_derived", "style_guide_phrase": "I hope this email finds you well"}}
-{"timestamp": "2026-05-01T01:03:16.388499+00:00", "event": "task_generated", "task_id": "tb_trace_0011", "meta": {"mode": "trace_derived", "style_guide_phrase": "just following up"}}
-{"timestamp": "2026-05-01T01:03:16.388514+00:00", "event": "task_generated", "task_id": "tb_trace_0012", "meta": {"mode": "trace_derived", "style_guide_phrase": "circling back"}}
-{"timestamp": "2026-05-01T01:03:16.388528+00:00", "event": "task_generated", "task_id": "tb_trace_0013", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick question"}}
-{"timestamp": "2026-05-01T01:03:16.388543+00:00", "event": "task_generated", "task_id": "tb_trace_0014", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick chat"}}
-{"timestamp": "2026-05-01T01:03:16.388559+00:00", "event": "task_generated", "task_id": "tb_trace_0015", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergize"}}
-{"timestamp": "2026-05-01T01:03:16.388572+00:00", "event": "task_generated", "task_id": "tb_trace_0016", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergy"}}
-{"timestamp": "2026-05-01T01:03:16.388591+00:00", "event": "task_generated", "task_id": "tb_trace_0017", "meta": {"mode": "trace_derived", "style_guide_phrase": "leverage"}}
-{"timestamp": "2026-05-01T01:03:16.388605+00:00", "event": "task_generated", "task_id": "tb_trace_0018", "meta": {"mode": "trace_derived", "style_guide_phrase": "ecosystem"}}
-{"timestamp": "2026-05-01T01:03:16.388622+00:00", "event": "task_generated", "task_id": "tb_trace_0019", "meta": {"mode": "trace_derived", "style_guide_phrase": "game-changer"}}
-{"timestamp": "2026-05-01T01:03:16.388638+00:00", "event": "task_generated", "task_id": "tb_trace_0020", "meta": {"mode": "trace_derived", "style_guide_phrase": "disruptor"}}
-{"timestamp": "2026-05-01T01:03:16.388653+00:00", "event": "task_generated", "task_id": "tb_trace_0021", "meta": {"mode": "trace_derived", "style_guide_phrase": "paradigm shift"}}
-{"timestamp": "2026-05-01T01:03:16.388674+00:00", "event": "task_generated", "task_id": "tb_trace_0022", "meta": {"mode": "trace_derived", "style_guide_phrase": "our proprietary"}}
-{"timestamp": "2026-05-01T01:03:16.388687+00:00", "event": "task_generated", "task_id": "tb_trace_0023", "meta": {"mode": "trace_derived", "style_guide_phrase": "our AI-powered"}}
-{"timestamp": "2026-05-01T01:03:16.388703+00:00", "event": "task_generated", "task_id": "tb_trace_0024", "meta": {"mode": "trace_derived", "style_guide_phrase": "You'll regret missing this"}}
-{"timestamp": "2026-05-01T01:03:16.388719+00:00", "event": "task_generated", "task_id": "tb_trace_0025", "meta": {"mode": "trace_derived", "style_guide_phrase": "Don't miss out"}}
-{"timestamp": "2026-05-01T01:03:16.388733+00:00", "event": "task_generated", "task_id": "tb_trace_0026", "meta": {"mode": "trace_derived", "style_guide_phrase": "Per my last email"}}
-{"timestamp": "2026-05-01T01:03:16.388769+00:00", "event": "task_generated", "task_id": "tb_trace_0027", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 500 employees"}}
-{"timestamp": "2026-05-01T01:03:16.388784+00:00", "event": "task_generated", "task_id": "tb_trace_0028", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 20 years of experience"}}
-{"timestamp": "2026-05-01T01:03:16.388798+00:00", "event": "task_generated", "task_id": "tb_trace_0029", "meta": {"mode": "trace_derived", "style_guide_phrase": "I'll keep this brief"}}
-{"timestamp": "2026-05-01T01:03:16.388815+00:00", "event": "task_generated", "task_id": "tb_trace_0030", "meta": {"mode": "trace_derived", "style_guide_phrase": "I noticed you're a"}}
-{"timestamp": "2026-05-01T01:03:16.388836+00:00", "event": "task_generated", "task_id": "tb_trace_0031", "meta": {"mode": "trace_derived", "style_guide_phrase": "world-class"}}
-{"timestamp": "2026-05-01T01:03:16.388873+00:00", "event": "task_generated", "task_id": "tb_trace_0032", "meta": {"mode": "trace_derived", "style_guide_phrase": "top talent"}}
-{"timestamp": "2026-05-01T01:03:16.389014+00:00", "event": "task_generated", "task_id": "tb_trace_0033", "meta": {"mode": "trace_derived", "style_guide_phrase": "A-players"}}
-{"timestamp": "2026-05-01T01:03:16.389086+00:00", "event": "task_generated", "task_id": "tb_trace_0034", "meta": {"mode": "trace_derived", "style_guide_phrase": "rockstar"}}
-{"timestamp": "2026-05-01T01:03:16.389120+00:00", "event": "task_generated", "task_id": "tb_trace_0035", "meta": {"mode": "trace_derived", "style_guide_phrase": "ninja"}}
-{"timestamp": "2026-05-01T01:03:16.389152+00:00", "event": "task_generated", "task_id": "tb_trace_0036", "meta": {"mode": "trace_derived", "style_guide_phrase": "wizard"}}
-{"timestamp": "2026-05-01T01:03:16.389198+00:00", "event": "task_generated", "task_id": "tb_trace_0037", "meta": {"mode": "trace_derived", "style_guide_phrase": "skyrocket"}}
-{"timestamp": "2026-05-01T01:03:16.389243+00:00", "event": "task_generated", "task_id": "tb_trace_0038", "meta": {"mode": "trace_derived", "style_guide_phrase": "supercharge"}}
-{"timestamp": "2026-05-01T01:03:16.389285+00:00", "event": "task_generated", "task_id": "tb_trace_0039", "meta": {"mode": "trace_derived", "style_guide_phrase": "10x"}}
-{"timestamp": "2026-05-01T01:03:16.389315+00:00", "event": "task_generated", "task_id": "tb_trace_0040", "meta": {"mode": "trace_derived", "style_guide_phrase": "I hope this email finds you well"}}
-{"timestamp": "2026-05-01T01:03:16.389405+00:00", "event": "task_generated", "task_id": "tb_trace_0041", "meta": {"mode": "trace_derived", "style_guide_phrase": "just following up"}}
-{"timestamp": "2026-05-01T01:03:16.389451+00:00", "event": "task_generated", "task_id": "tb_trace_0042", "meta": {"mode": "trace_derived", "style_guide_phrase": "circling back"}}
-{"timestamp": "2026-05-01T01:03:16.389484+00:00", "event": "task_generated", "task_id": "tb_trace_0043", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick question"}}
-{"timestamp": "2026-05-01T01:03:16.389509+00:00", "event": "task_generated", "task_id": "tb_trace_0044", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick chat"}}
-{"timestamp": "2026-05-01T01:03:16.389534+00:00", "event": "task_generated", "task_id": "tb_trace_0045", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergize"}}
-{"timestamp": "2026-05-01T01:03:16.389565+00:00", "event": "task_generated", "task_id": "tb_trace_0046", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergy"}}
-{"timestamp": "2026-05-01T01:03:16.389592+00:00", "event": "task_generated", "task_id": "tb_trace_0047", "meta": {"mode": "trace_derived", "style_guide_phrase": "leverage"}}
-{"timestamp": "2026-05-01T01:03:16.389622+00:00", "event": "task_generated", "task_id": "tb_trace_0048", "meta": {"mode": "trace_derived", "style_guide_phrase": "ecosystem"}}
-{"timestamp": "2026-05-01T01:03:16.389646+00:00", "event": "task_generated", "task_id": "tb_trace_0049", "meta": {"mode": "trace_derived", "style_guide_phrase": "game-changer"}}
-{"timestamp": "2026-05-01T01:03:16.389667+00:00", "event": "task_generated", "task_id": "tb_trace_0050", "meta": {"mode": "trace_derived", "style_guide_phrase": "disruptor"}}
-{"timestamp": "2026-05-01T01:03:16.389693+00:00", "event": "task_generated", "task_id": "tb_trace_0051", "meta": {"mode": "trace_derived", "style_guide_phrase": "paradigm shift"}}
-{"timestamp": "2026-05-01T01:03:16.389719+00:00", "event": "task_generated", "task_id": "tb_trace_0052", "meta": {"mode": "trace_derived", "style_guide_phrase": "our proprietary"}}
-{"timestamp": "2026-05-01T01:03:16.389748+00:00", "event": "task_generated", "task_id": "tb_trace_0053", "meta": {"mode": "trace_derived", "style_guide_phrase": "our AI-powered"}}
-{"timestamp": "2026-05-01T01:03:16.389794+00:00", "event": "task_generated", "task_id": "tb_trace_0054", "meta": {"mode": "trace_derived", "style_guide_phrase": "You'll regret missing this"}}
-{"timestamp": "2026-05-01T01:03:16.389834+00:00", "event": "task_generated", "task_id": "tb_trace_0055", "meta": {"mode": "trace_derived", "style_guide_phrase": "Don't miss out"}}
-{"timestamp": "2026-05-01T01:03:16.389855+00:00", "event": "task_generated", "task_id": "tb_trace_0056", "meta": {"mode": "trace_derived", "style_guide_phrase": "Per my last email"}}
-{"timestamp": "2026-05-01T01:03:16.389904+00:00", "event": "task_generated", "task_id": "tb_trace_0057", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 500 employees"}}
-{"timestamp": "2026-05-01T01:03:16.389931+00:00", "event": "task_generated", "task_id": "tb_trace_0058", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 20 years of experience"}}
-{"timestamp": "2026-05-01T01:03:16.389948+00:00", "event": "task_generated", "task_id": "tb_trace_0059", "meta": {"mode": "trace_derived", "style_guide_phrase": "I'll keep this brief"}}
-{"timestamp": "2026-05-01T01:03:16.389960+00:00", "event": "task_generated", "task_id": "tb_trace_0060", "meta": {"mode": "trace_derived", "style_guide_phrase": "I noticed you're a"}}
-{"timestamp": "2026-05-01T01:03:16.389977+00:00", "event": "task_generated", "task_id": "tb_trace_0061", "meta": {"mode": "trace_derived", "style_guide_phrase": "world-class"}}
-{"timestamp": "2026-05-01T01:03:16.389990+00:00", "event": "task_generated", "task_id": "tb_trace_0062", "meta": {"mode": "trace_derived", "style_guide_phrase": "top talent"}}
-{"timestamp": "2026-05-01T01:03:16.390007+00:00", "event": "task_generated", "task_id": "tb_trace_0063", "meta": {"mode": "trace_derived", "style_guide_phrase": "A-players"}}
-{"timestamp": "2026-05-01T01:03:16.390026+00:00", "event": "task_generated", "task_id": "tb_trace_0064", "meta": {"mode": "trace_derived", "style_guide_phrase": "rockstar"}}
-{"timestamp": "2026-05-01T01:03:16.390048+00:00", "event": "task_generated", "task_id": "tb_trace_0065", "meta": {"mode": "trace_derived", "style_guide_phrase": "ninja"}}
-{"timestamp": "2026-05-01T01:03:16.390066+00:00", "event": "task_generated", "task_id": "tb_trace_0066", "meta": {"mode": "trace_derived", "style_guide_phrase": "wizard"}}
-{"timestamp": "2026-05-01T01:03:16.390083+00:00", "event": "task_generated", "task_id": "tb_trace_0067", "meta": {"mode": "trace_derived", "style_guide_phrase": "skyrocket"}}
-{"timestamp": "2026-05-01T01:03:16.390102+00:00", "event": "task_generated", "task_id": "tb_trace_0068", "meta": {"mode": "trace_derived", "style_guide_phrase": "supercharge"}}
-{"timestamp": "2026-05-01T01:03:16.390121+00:00", "event": "task_generated", "task_id": "tb_trace_0069", "meta": {"mode": "trace_derived", "style_guide_phrase": "10x"}}
-{"timestamp": "2026-05-01T01:03:16.390137+00:00", "event": "task_generated", "task_id": "tb_trace_0070", "meta": {"mode": "trace_derived", "style_guide_phrase": "I hope this email finds you well"}}
-{"timestamp": "2026-05-01T01:03:16.390154+00:00", "event": "task_generated", "task_id": "tb_trace_0071", "meta": {"mode": "trace_derived", "style_guide_phrase": "just following up"}}
-{"timestamp": "2026-05-01T01:03:16.390167+00:00", "event": "task_generated", "task_id": "tb_trace_0072", "meta": {"mode": "trace_derived", "style_guide_phrase": "circling back"}}
-{"timestamp": "2026-05-01T01:03:16.390184+00:00", "event": "task_generated", "task_id": "tb_trace_0073", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick question"}}
-{"timestamp": "2026-05-01T01:03:16.390198+00:00", "event": "task_generated", "task_id": "tb_trace_0074", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick chat"}}
-{"timestamp": "2026-05-01T01:03:16.390212+00:00", "event": "task_generated", "task_id": "tb_trace_0075", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergize"}}
-{"timestamp": "2026-05-01T01:03:16.390224+00:00", "event": "task_generated", "task_id": "tb_trace_0076", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergy"}}
-{"timestamp": "2026-05-01T01:03:16.390244+00:00", "event": "task_generated", "task_id": "tb_trace_0077", "meta": {"mode": "trace_derived", "style_guide_phrase": "leverage"}}
-{"timestamp": "2026-05-01T01:03:16.390262+00:00", "event": "task_generated", "task_id": "tb_trace_0078", "meta": {"mode": "trace_derived", "style_guide_phrase": "ecosystem"}}
-{"timestamp": "2026-05-01T01:03:16.390277+00:00", "event": "task_generated", "task_id": "tb_trace_0079", "meta": {"mode": "trace_derived", "style_guide_phrase": "game-changer"}}
-{"timestamp": "2026-05-01T01:03:16.390288+00:00", "event": "task_generated", "task_id": "tb_trace_0080", "meta": {"mode": "trace_derived", "style_guide_phrase": "disruptor"}}
-{"timestamp": "2026-05-01T01:03:16.390889+00:00", "event": "task_generated", "task_id": "tb_prog_0081", "meta": {"mode": "programmatic", "style_guide_phrase": "world-class"}}
-{"timestamp": "2026-05-01T01:03:16.390908+00:00", "event": "task_generated", "task_id": "tb_prog_0082", "meta": {"mode": "programmatic", "style_guide_phrase": "top talent"}}
-{"timestamp": "2026-05-01T01:03:16.390922+00:00", "event": "task_generated", "task_id": "tb_prog_0083", "meta": {"mode": "programmatic", "style_guide_phrase": "A-players"}}
-{"timestamp": "2026-05-01T01:03:16.390934+00:00", "event": "task_generated", "task_id": "tb_prog_0084", "meta": {"mode": "programmatic", "style_guide_phrase": "rockstar"}}
-{"timestamp": "2026-05-01T01:03:16.390948+00:00", "event": "task_generated", "task_id": "tb_prog_0085", "meta": {"mode": "programmatic", "style_guide_phrase": "ninja"}}
-{"timestamp": "2026-05-01T01:03:16.390960+00:00", "event": "task_generated", "task_id": "tb_prog_0086", "meta": {"mode": "programmatic", "style_guide_phrase": "wizard"}}
-{"timestamp": "2026-05-01T01:03:16.390973+00:00", "event": "task_generated", "task_id": "tb_prog_0087", "meta": {"mode": "programmatic", "style_guide_phrase": "skyrocket"}}
-{"timestamp": "2026-05-01T01:03:16.390985+00:00", "event": "task_generated", "task_id": "tb_prog_0088", "meta": {"mode": "programmatic", "style_guide_phrase": "supercharge"}}
-{"timestamp": "2026-05-01T01:03:16.391001+00:00", "event": "task_generated", "task_id": "tb_prog_0089", "meta": {"mode": "programmatic", "style_guide_phrase": "10x"}}
-{"timestamp": "2026-05-01T01:03:16.391016+00:00", "event": "task_generated", "task_id": "tb_prog_0090", "meta": {"mode": "programmatic", "style_guide_phrase": "I hope this email finds you well"}}
-{"timestamp": "2026-05-01T01:03:16.391030+00:00", "event": "task_generated", "task_id": "tb_prog_0091", "meta": {"mode": "programmatic", "style_guide_phrase": "just following up"}}
-{"timestamp": "2026-05-01T01:03:16.391042+00:00", "event": "task_generated", "task_id": "tb_prog_0092", "meta": {"mode": "programmatic", "style_guide_phrase": "circling back"}}
-{"timestamp": "2026-05-01T01:03:16.391056+00:00", "event": "task_generated", "task_id": "tb_prog_0093", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick question"}}
-{"timestamp": "2026-05-01T01:03:16.391072+00:00", "event": "task_generated", "task_id": "tb_prog_0094", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick chat"}}
-{"timestamp": "2026-05-01T01:03:16.391085+00:00", "event": "task_generated", "task_id": "tb_prog_0095", "meta": {"mode": "programmatic", "style_guide_phrase": "synergize"}}
-{"timestamp": "2026-05-01T01:03:16.391097+00:00", "event": "task_generated", "task_id": "tb_prog_0096", "meta": {"mode": "programmatic", "style_guide_phrase": "synergy"}}
-{"timestamp": "2026-05-01T01:03:16.391109+00:00", "event": "task_generated", "task_id": "tb_prog_0097", "meta": {"mode": "programmatic", "style_guide_phrase": "leverage"}}
-{"timestamp": "2026-05-01T01:03:16.391120+00:00", "event": "task_generated", "task_id": "tb_prog_0098", "meta": {"mode": "programmatic", "style_guide_phrase": "ecosystem"}}
-{"timestamp": "2026-05-01T01:03:16.391132+00:00", "event": "task_generated", "task_id": "tb_prog_0099", "meta": {"mode": "programmatic", "style_guide_phrase": "game-changer"}}
-{"timestamp": "2026-05-01T01:03:16.391145+00:00", "event": "task_generated", "task_id": "tb_prog_0100", "meta": {"mode": "programmatic", "style_guide_phrase": "disruptor"}}
-{"timestamp": "2026-05-01T01:03:16.391157+00:00", "event": "task_generated", "task_id": "tb_prog_0101", "meta": {"mode": "programmatic", "style_guide_phrase": "paradigm shift"}}
-{"timestamp": "2026-05-01T01:03:16.391171+00:00", "event": "task_generated", "task_id": "tb_prog_0102", "meta": {"mode": "programmatic", "style_guide_phrase": "our proprietary"}}
-{"timestamp": "2026-05-01T01:03:16.391183+00:00", "event": "task_generated", "task_id": "tb_prog_0103", "meta": {"mode": "programmatic", "style_guide_phrase": "our AI-powered"}}
-{"timestamp": "2026-05-01T01:03:16.391195+00:00", "event": "task_generated", "task_id": "tb_prog_0104", "meta": {"mode": "programmatic", "style_guide_phrase": "You'll regret missing this"}}
-{"timestamp": "2026-05-01T01:03:16.391207+00:00", "event": "task_generated", "task_id": "tb_prog_0105", "meta": {"mode": "programmatic", "style_guide_phrase": "Don't miss out"}}
-{"timestamp": "2026-05-01T01:03:16.391220+00:00", "event": "task_generated", "task_id": "tb_prog_0106", "meta": {"mode": "programmatic", "style_guide_phrase": "Per my last email"}}
-{"timestamp": "2026-05-01T01:03:16.391232+00:00", "event": "task_generated", "task_id": "tb_prog_0107", "meta": {"mode": "programmatic", "style_guide_phrase": "our 500 employees"}}
-{"timestamp": "2026-05-01T01:03:16.391243+00:00", "event": "task_generated", "task_id": "tb_prog_0108", "meta": {"mode": "programmatic", "style_guide_phrase": "our 20 years of experience"}}
-{"timestamp": "2026-05-01T01:03:16.391255+00:00", "event": "task_generated", "task_id": "tb_prog_0109", "meta": {"mode": "programmatic", "style_guide_phrase": "I'll keep this brief"}}
-{"timestamp": "2026-05-01T01:03:16.391268+00:00", "event": "task_generated", "task_id": "tb_prog_0110", "meta": {"mode": "programmatic", "style_guide_phrase": "I noticed you're a"}}
-{"timestamp": "2026-05-01T01:03:16.391280+00:00", "event": "task_generated", "task_id": "tb_prog_0111", "meta": {"mode": "programmatic", "style_guide_phrase": "world-class"}}
-{"timestamp": "2026-05-01T01:03:16.391292+00:00", "event": "task_generated", "task_id": "tb_prog_0112", "meta": {"mode": "programmatic", "style_guide_phrase": "top talent"}}
-{"timestamp": "2026-05-01T01:03:16.391303+00:00", "event": "task_generated", "task_id": "tb_prog_0113", "meta": {"mode": "programmatic", "style_guide_phrase": "A-players"}}
-{"timestamp": "2026-05-01T01:03:16.391315+00:00", "event": "task_generated", "task_id": "tb_prog_0114", "meta": {"mode": "programmatic", "style_guide_phrase": "rockstar"}}
-{"timestamp": "2026-05-01T01:03:16.391325+00:00", "event": "task_generated", "task_id": "tb_prog_0115", "meta": {"mode": "programmatic", "style_guide_phrase": "ninja"}}
-{"timestamp": "2026-05-01T01:03:16.391337+00:00", "event": "task_generated", "task_id": "tb_prog_0116", "meta": {"mode": "programmatic", "style_guide_phrase": "wizard"}}
-{"timestamp": "2026-05-01T01:03:16.391348+00:00", "event": "task_generated", "task_id": "tb_prog_0117", "meta": {"mode": "programmatic", "style_guide_phrase": "skyrocket"}}
-{"timestamp": "2026-05-01T01:03:16.391359+00:00", "event": "task_generated", "task_id": "tb_prog_0118", "meta": {"mode": "programmatic", "style_guide_phrase": "supercharge"}}
-{"timestamp": "2026-05-01T01:03:16.391372+00:00", "event": "task_generated", "task_id": "tb_prog_0119", "meta": {"mode": "programmatic", "style_guide_phrase": "10x"}}
-{"timestamp": "2026-05-01T01:03:16.391384+00:00", "event": "task_generated", "task_id": "tb_prog_0120", "meta": {"mode": "programmatic", "style_guide_phrase": "I hope this email finds you well"}}
-{"timestamp": "2026-05-01T01:03:16.391395+00:00", "event": "task_generated", "task_id": "tb_prog_0121", "meta": {"mode": "programmatic", "style_guide_phrase": "just following up"}}
-{"timestamp": "2026-05-01T01:03:16.391414+00:00", "event": "task_generated", "task_id": "tb_prog_0122", "meta": {"mode": "programmatic", "style_guide_phrase": "circling back"}}
-{"timestamp": "2026-05-01T01:03:16.391435+00:00", "event": "task_generated", "task_id": "tb_prog_0123", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick question"}}
-{"timestamp": "2026-05-01T01:03:16.391460+00:00", "event": "task_generated", "task_id": "tb_prog_0124", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick chat"}}
-{"timestamp": "2026-05-01T01:03:16.391491+00:00", "event": "task_generated", "task_id": "tb_prog_0125", "meta": {"mode": "programmatic", "style_guide_phrase": "synergize"}}
-{"timestamp": "2026-05-01T01:03:16.391506+00:00", "event": "task_generated", "task_id": "tb_prog_0126", "meta": {"mode": "programmatic", "style_guide_phrase": "synergy"}}
-{"timestamp": "2026-05-01T01:03:16.391525+00:00", "event": "task_generated", "task_id": "tb_prog_0127", "meta": {"mode": "programmatic", "style_guide_phrase": "leverage"}}
-{"timestamp": "2026-05-01T01:03:16.391537+00:00", "event": "task_generated", "task_id": "tb_prog_0128", "meta": {"mode": "programmatic", "style_guide_phrase": "ecosystem"}}
-{"timestamp": "2026-05-01T01:03:16.391549+00:00", "event": "task_generated", "task_id": "tb_prog_0129", "meta": {"mode": "programmatic", "style_guide_phrase": "game-changer"}}
-{"timestamp": "2026-05-01T01:03:16.391562+00:00", "event": "task_generated", "task_id": "tb_prog_0130", "meta": {"mode": "programmatic", "style_guide_phrase": "disruptor"}}
-{"timestamp": "2026-05-01T01:03:16.391576+00:00", "event": "task_generated", "task_id": "tb_prog_0131", "meta": {"mode": "programmatic", "style_guide_phrase": "paradigm shift"}}
-{"timestamp": "2026-05-01T01:03:16.391589+00:00", "event": "task_generated", "task_id": "tb_prog_0132", "meta": {"mode": "programmatic", "style_guide_phrase": "our proprietary"}}
-{"timestamp": "2026-05-01T01:03:16.391602+00:00", "event": "task_generated", "task_id": "tb_prog_0133", "meta": {"mode": "programmatic", "style_guide_phrase": "our AI-powered"}}
-{"timestamp": "2026-05-01T01:03:16.391614+00:00", "event": "task_generated", "task_id": "tb_prog_0134", "meta": {"mode": "programmatic", "style_guide_phrase": "You'll regret missing this"}}
-{"timestamp": "2026-05-01T01:03:16.391627+00:00", "event": "task_generated", "task_id": "tb_prog_0135", "meta": {"mode": "programmatic", "style_guide_phrase": "Don't miss out"}}
-{"timestamp": "2026-05-01T01:03:16.391640+00:00", "event": "task_generated", "task_id": "tb_prog_0136", "meta": {"mode": "programmatic", "style_guide_phrase": "Per my last email"}}
-{"timestamp": "2026-05-01T01:03:16.391651+00:00", "event": "task_generated", "task_id": "tb_prog_0137", "meta": {"mode": "programmatic", "style_guide_phrase": "our 500 employees"}}
-{"timestamp": "2026-05-01T01:03:16.391664+00:00", "event": "task_generated", "task_id": "tb_prog_0138", "meta": {"mode": "programmatic", "style_guide_phrase": "our 20 years of experience"}}
-{"timestamp": "2026-05-01T01:03:16.391677+00:00", "event": "task_generated", "task_id": "tb_prog_0139", "meta": {"mode": "programmatic", "style_guide_phrase": "I'll keep this brief"}}
-{"timestamp": "2026-05-01T01:03:16.391688+00:00", "event": "task_generated", "task_id": "tb_prog_0140", "meta": {"mode": "programmatic", "style_guide_phrase": "I noticed you're a"}}
-{"timestamp": "2026-05-01T01:03:16.391700+00:00", "event": "task_generated", "task_id": "tb_prog_0141", "meta": {"mode": "programmatic", "style_guide_phrase": "world-class"}}
-{"timestamp": "2026-05-01T01:03:16.391710+00:00", "event": "task_generated", "task_id": "tb_prog_0142", "meta": {"mode": "programmatic", "style_guide_phrase": "top talent"}}
-{"timestamp": "2026-05-01T01:03:16.391726+00:00", "event": "task_generated", "task_id": "tb_prog_0143", "meta": {"mode": "programmatic", "style_guide_phrase": "A-players"}}
-{"timestamp": "2026-05-01T01:03:16.391739+00:00", "event": "task_generated", "task_id": "tb_prog_0144", "meta": {"mode": "programmatic", "style_guide_phrase": "rockstar"}}
-{"timestamp": "2026-05-01T01:03:16.391765+00:00", "event": "task_generated", "task_id": "tb_prog_0145", "meta": {"mode": "programmatic", "style_guide_phrase": "ninja"}}
-{"timestamp": "2026-05-01T01:03:16.391777+00:00", "event": "task_generated", "task_id": "tb_prog_0146", "meta": {"mode": "programmatic", "style_guide_phrase": "wizard"}}
-{"timestamp": "2026-05-01T01:03:16.391789+00:00", "event": "task_generated", "task_id": "tb_prog_0147", "meta": {"mode": "programmatic", "style_guide_phrase": "skyrocket"}}
-{"timestamp": "2026-05-01T01:03:16.391801+00:00", "event": "task_generated", "task_id": "tb_prog_0148", "meta": {"mode": "programmatic", "style_guide_phrase": "supercharge"}}
-{"timestamp": "2026-05-01T01:03:16.391812+00:00", "event": "task_generated", "task_id": "tb_prog_0149", "meta": {"mode": "programmatic", "style_guide_phrase": "10x"}}
-{"timestamp": "2026-05-01T01:03:16.391826+00:00", "event": "task_generated", "task_id": "tb_prog_0150", "meta": {"mode": "programmatic", "style_guide_phrase": "I hope this email finds you well"}}
-{"timestamp": "2026-05-01T01:03:16.391855+00:00", "event": "task_generated", "task_id": "tb_synth_0151", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391873+00:00", "event": "task_generated", "task_id": "tb_synth_0152", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391896+00:00", "event": "task_generated", "task_id": "tb_synth_0153", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391910+00:00", "event": "task_generated", "task_id": "tb_synth_0154", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391924+00:00", "event": "task_generated", "task_id": "tb_synth_0155", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391935+00:00", "event": "task_generated", "task_id": "tb_synth_0156", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391949+00:00", "event": "task_generated", "task_id": "tb_synth_0157", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391960+00:00", "event": "task_generated", "task_id": "tb_synth_0158", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391972+00:00", "event": "task_generated", "task_id": "tb_synth_0159", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391985+00:00", "event": "task_generated", "task_id": "tb_synth_0160", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.391997+00:00", "event": "task_generated", "task_id": "tb_synth_0161", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392009+00:00", "event": "task_generated", "task_id": "tb_synth_0162", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392021+00:00", "event": "task_generated", "task_id": "tb_synth_0163", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392036+00:00", "event": "task_generated", "task_id": "tb_synth_0164", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392048+00:00", "event": "task_generated", "task_id": "tb_synth_0165", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392061+00:00", "event": "task_generated", "task_id": "tb_synth_0166", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392072+00:00", "event": "task_generated", "task_id": "tb_synth_0167", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392086+00:00", "event": "task_generated", "task_id": "tb_synth_0168", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392096+00:00", "event": "task_generated", "task_id": "tb_synth_0169", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392109+00:00", "event": "task_generated", "task_id": "tb_synth_0170", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392120+00:00", "event": "task_generated", "task_id": "tb_synth_0171", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392133+00:00", "event": "task_generated", "task_id": "tb_synth_0172", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392146+00:00", "event": "task_generated", "task_id": "tb_synth_0173", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392161+00:00", "event": "task_generated", "task_id": "tb_synth_0174", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392173+00:00", "event": "task_generated", "task_id": "tb_synth_0175", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392185+00:00", "event": "task_generated", "task_id": "tb_synth_0176", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392196+00:00", "event": "task_generated", "task_id": "tb_synth_0177", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392209+00:00", "event": "task_generated", "task_id": "tb_synth_0178", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392222+00:00", "event": "task_generated", "task_id": "tb_synth_0179", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392234+00:00", "event": "task_generated", "task_id": "tb_synth_0180", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392248+00:00", "event": "task_generated", "task_id": "tb_synth_0181", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392258+00:00", "event": "task_generated", "task_id": "tb_synth_0182", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392272+00:00", "event": "task_generated", "task_id": "tb_synth_0183", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392284+00:00", "event": "task_generated", "task_id": "tb_synth_0184", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392296+00:00", "event": "task_generated", "task_id": "tb_synth_0185", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392308+00:00", "event": "task_generated", "task_id": "tb_synth_0186", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392320+00:00", "event": "task_generated", "task_id": "tb_synth_0187", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392332+00:00", "event": "task_generated", "task_id": "tb_synth_0188", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392345+00:00", "event": "task_generated", "task_id": "tb_synth_0189", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392355+00:00", "event": "task_generated", "task_id": "tb_synth_0190", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392369+00:00", "event": "task_generated", "task_id": "tb_synth_0191", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392382+00:00", "event": "task_generated", "task_id": "tb_synth_0192", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392394+00:00", "event": "task_generated", "task_id": "tb_synth_0193", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392408+00:00", "event": "task_generated", "task_id": "tb_synth_0194", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392419+00:00", "event": "task_generated", "task_id": "tb_synth_0195", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392432+00:00", "event": "task_generated", "task_id": "tb_synth_0196", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392442+00:00", "event": "task_generated", "task_id": "tb_synth_0197", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392455+00:00", "event": "task_generated", "task_id": "tb_synth_0198", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392465+00:00", "event": "task_generated", "task_id": "tb_synth_0199", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392477+00:00", "event": "task_generated", "task_id": "tb_synth_0200", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
-{"timestamp": "2026-05-01T01:03:16.392497+00:00", "event": "task_generated", "task_id": "tb_hand_0201", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392514+00:00", "event": "task_generated", "task_id": "tb_hand_0202", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392526+00:00", "event": "task_generated", "task_id": "tb_hand_0203", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392540+00:00", "event": "task_generated", "task_id": "tb_hand_0204", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392551+00:00", "event": "task_generated", "task_id": "tb_hand_0205", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392564+00:00", "event": "task_generated", "task_id": "tb_hand_0206", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392575+00:00", "event": "task_generated", "task_id": "tb_hand_0207", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392586+00:00", "event": "task_generated", "task_id": "tb_hand_0208", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392599+00:00", "event": "task_generated", "task_id": "tb_hand_0209", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392609+00:00", "event": "task_generated", "task_id": "tb_hand_0210", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392622+00:00", "event": "task_generated", "task_id": "tb_hand_0211", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392633+00:00", "event": "task_generated", "task_id": "tb_hand_0212", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392644+00:00", "event": "task_generated", "task_id": "tb_hand_0213", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392657+00:00", "event": "task_generated", "task_id": "tb_hand_0214", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392669+00:00", "event": "task_generated", "task_id": "tb_hand_0215", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392681+00:00", "event": "task_generated", "task_id": "tb_hand_0216", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392695+00:00", "event": "task_generated", "task_id": "tb_hand_0217", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392707+00:00", "event": "task_generated", "task_id": "tb_hand_0218", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392720+00:00", "event": "task_generated", "task_id": "tb_hand_0219", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392731+00:00", "event": "task_generated", "task_id": "tb_hand_0220", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392744+00:00", "event": "task_generated", "task_id": "tb_hand_0221", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392770+00:00", "event": "task_generated", "task_id": "tb_hand_0222", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392781+00:00", "event": "task_generated", "task_id": "tb_hand_0223", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392796+00:00", "event": "task_generated", "task_id": "tb_hand_0224", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392807+00:00", "event": "task_generated", "task_id": "tb_hand_0225", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392819+00:00", "event": "task_generated", "task_id": "tb_hand_0226", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
-{"timestamp": "2026-05-01T01:03:16.392831+00:00", "event": "task_generated", "task_id": "tb_hand_0227", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
-{"timestamp": "2026-05-01T01:03:16.392842+00:00", "event": "task_generated", "task_id": "tb_hand_0228", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
-{"timestamp": "2026-05-01T01:03:16.392854+00:00", "event": "task_generated", "task_id": "tb_hand_0229", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
-{"timestamp": "2026-05-01T01:03:16.392867+00:00", "event": "task_generated", "task_id": "tb_hand_0230", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.886079+00:00", "event": "task_generated", "task_id": "tb_trace_0001", "meta": {"mode": "trace_derived", "style_guide_phrase": "world-class"}}
+{"timestamp": "2026-05-01T11:32:42.886218+00:00", "event": "task_generated", "task_id": "tb_trace_0002", "meta": {"mode": "trace_derived", "style_guide_phrase": "top talent"}}
+{"timestamp": "2026-05-01T11:32:42.886344+00:00", "event": "task_generated", "task_id": "tb_trace_0003", "meta": {"mode": "trace_derived", "style_guide_phrase": "A-players"}}
+{"timestamp": "2026-05-01T11:32:42.886434+00:00", "event": "task_generated", "task_id": "tb_trace_0004", "meta": {"mode": "trace_derived", "style_guide_phrase": "rockstar"}}
+{"timestamp": "2026-05-01T11:32:42.886525+00:00", "event": "task_generated", "task_id": "tb_trace_0005", "meta": {"mode": "trace_derived", "style_guide_phrase": "ninja"}}
+{"timestamp": "2026-05-01T11:32:42.886596+00:00", "event": "task_generated", "task_id": "tb_trace_0006", "meta": {"mode": "trace_derived", "style_guide_phrase": "wizard"}}
+{"timestamp": "2026-05-01T11:32:42.886696+00:00", "event": "task_generated", "task_id": "tb_trace_0007", "meta": {"mode": "trace_derived", "style_guide_phrase": "skyrocket"}}
+{"timestamp": "2026-05-01T11:32:42.886761+00:00", "event": "task_generated", "task_id": "tb_trace_0008", "meta": {"mode": "trace_derived", "style_guide_phrase": "supercharge"}}
+{"timestamp": "2026-05-01T11:32:42.886879+00:00", "event": "task_generated", "task_id": "tb_trace_0009", "meta": {"mode": "trace_derived", "style_guide_phrase": "10x"}}
+{"timestamp": "2026-05-01T11:32:42.886971+00:00", "event": "task_generated", "task_id": "tb_trace_0010", "meta": {"mode": "trace_derived", "style_guide_phrase": "I hope this email finds you well"}}
+{"timestamp": "2026-05-01T11:32:42.887053+00:00", "event": "task_generated", "task_id": "tb_trace_0011", "meta": {"mode": "trace_derived", "style_guide_phrase": "just following up"}}
+{"timestamp": "2026-05-01T11:32:42.887136+00:00", "event": "task_generated", "task_id": "tb_trace_0012", "meta": {"mode": "trace_derived", "style_guide_phrase": "circling back"}}
+{"timestamp": "2026-05-01T11:32:42.887229+00:00", "event": "task_generated", "task_id": "tb_trace_0013", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick question"}}
+{"timestamp": "2026-05-01T11:32:42.887300+00:00", "event": "task_generated", "task_id": "tb_trace_0014", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick chat"}}
+{"timestamp": "2026-05-01T11:32:42.887393+00:00", "event": "task_generated", "task_id": "tb_trace_0015", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergize"}}
+{"timestamp": "2026-05-01T11:32:42.887468+00:00", "event": "task_generated", "task_id": "tb_trace_0016", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergy"}}
+{"timestamp": "2026-05-01T11:32:42.887572+00:00", "event": "task_generated", "task_id": "tb_trace_0017", "meta": {"mode": "trace_derived", "style_guide_phrase": "leverage"}}
+{"timestamp": "2026-05-01T11:32:42.887644+00:00", "event": "task_generated", "task_id": "tb_trace_0018", "meta": {"mode": "trace_derived", "style_guide_phrase": "ecosystem"}}
+{"timestamp": "2026-05-01T11:32:42.887731+00:00", "event": "task_generated", "task_id": "tb_trace_0019", "meta": {"mode": "trace_derived", "style_guide_phrase": "game-changer"}}
+{"timestamp": "2026-05-01T11:32:42.887828+00:00", "event": "task_generated", "task_id": "tb_trace_0020", "meta": {"mode": "trace_derived", "style_guide_phrase": "disruptor"}}
+{"timestamp": "2026-05-01T11:32:42.887914+00:00", "event": "task_generated", "task_id": "tb_trace_0021", "meta": {"mode": "trace_derived", "style_guide_phrase": "paradigm shift"}}
+{"timestamp": "2026-05-01T11:32:42.888029+00:00", "event": "task_generated", "task_id": "tb_trace_0022", "meta": {"mode": "trace_derived", "style_guide_phrase": "our proprietary"}}
+{"timestamp": "2026-05-01T11:32:42.888117+00:00", "event": "task_generated", "task_id": "tb_trace_0023", "meta": {"mode": "trace_derived", "style_guide_phrase": "our AI-powered"}}
+{"timestamp": "2026-05-01T11:32:42.888187+00:00", "event": "task_generated", "task_id": "tb_trace_0024", "meta": {"mode": "trace_derived", "style_guide_phrase": "You'll regret missing this"}}
+{"timestamp": "2026-05-01T11:32:42.888285+00:00", "event": "task_generated", "task_id": "tb_trace_0025", "meta": {"mode": "trace_derived", "style_guide_phrase": "Don't miss out"}}
+{"timestamp": "2026-05-01T11:32:42.888358+00:00", "event": "task_generated", "task_id": "tb_trace_0026", "meta": {"mode": "trace_derived", "style_guide_phrase": "Per my last email"}}
+{"timestamp": "2026-05-01T11:32:42.888471+00:00", "event": "task_generated", "task_id": "tb_trace_0027", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 500 employees"}}
+{"timestamp": "2026-05-01T11:32:42.888549+00:00", "event": "task_generated", "task_id": "tb_trace_0028", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 20 years of experience"}}
+{"timestamp": "2026-05-01T11:32:42.888641+00:00", "event": "task_generated", "task_id": "tb_trace_0029", "meta": {"mode": "trace_derived", "style_guide_phrase": "I'll keep this brief"}}
+{"timestamp": "2026-05-01T11:32:42.888733+00:00", "event": "task_generated", "task_id": "tb_trace_0030", "meta": {"mode": "trace_derived", "style_guide_phrase": "I noticed you're a"}}
+{"timestamp": "2026-05-01T11:32:42.888821+00:00", "event": "task_generated", "task_id": "tb_trace_0031", "meta": {"mode": "trace_derived", "style_guide_phrase": "world-class"}}
+{"timestamp": "2026-05-01T11:32:42.889165+00:00", "event": "task_generated", "task_id": "tb_trace_0032", "meta": {"mode": "trace_derived", "style_guide_phrase": "top talent"}}
+{"timestamp": "2026-05-01T11:32:42.889290+00:00", "event": "task_generated", "task_id": "tb_trace_0033", "meta": {"mode": "trace_derived", "style_guide_phrase": "A-players"}}
+{"timestamp": "2026-05-01T11:32:42.889365+00:00", "event": "task_generated", "task_id": "tb_trace_0034", "meta": {"mode": "trace_derived", "style_guide_phrase": "rockstar"}}
+{"timestamp": "2026-05-01T11:32:42.889484+00:00", "event": "task_generated", "task_id": "tb_trace_0035", "meta": {"mode": "trace_derived", "style_guide_phrase": "ninja"}}
+{"timestamp": "2026-05-01T11:32:42.889576+00:00", "event": "task_generated", "task_id": "tb_trace_0036", "meta": {"mode": "trace_derived", "style_guide_phrase": "wizard"}}
+{"timestamp": "2026-05-01T11:32:42.889687+00:00", "event": "task_generated", "task_id": "tb_trace_0037", "meta": {"mode": "trace_derived", "style_guide_phrase": "skyrocket"}}
+{"timestamp": "2026-05-01T11:32:42.889783+00:00", "event": "task_generated", "task_id": "tb_trace_0038", "meta": {"mode": "trace_derived", "style_guide_phrase": "supercharge"}}
+{"timestamp": "2026-05-01T11:32:42.889885+00:00", "event": "task_generated", "task_id": "tb_trace_0039", "meta": {"mode": "trace_derived", "style_guide_phrase": "10x"}}
+{"timestamp": "2026-05-01T11:32:42.889982+00:00", "event": "task_generated", "task_id": "tb_trace_0040", "meta": {"mode": "trace_derived", "style_guide_phrase": "I hope this email finds you well"}}
+{"timestamp": "2026-05-01T11:32:42.890080+00:00", "event": "task_generated", "task_id": "tb_trace_0041", "meta": {"mode": "trace_derived", "style_guide_phrase": "just following up"}}
+{"timestamp": "2026-05-01T11:32:42.890146+00:00", "event": "task_generated", "task_id": "tb_trace_0042", "meta": {"mode": "trace_derived", "style_guide_phrase": "circling back"}}
+{"timestamp": "2026-05-01T11:32:42.890238+00:00", "event": "task_generated", "task_id": "tb_trace_0043", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick question"}}
+{"timestamp": "2026-05-01T11:32:42.890306+00:00", "event": "task_generated", "task_id": "tb_trace_0044", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick chat"}}
+{"timestamp": "2026-05-01T11:32:42.890410+00:00", "event": "task_generated", "task_id": "tb_trace_0045", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergize"}}
+{"timestamp": "2026-05-01T11:32:42.890496+00:00", "event": "task_generated", "task_id": "tb_trace_0046", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergy"}}
+{"timestamp": "2026-05-01T11:32:42.890590+00:00", "event": "task_generated", "task_id": "tb_trace_0047", "meta": {"mode": "trace_derived", "style_guide_phrase": "leverage"}}
+{"timestamp": "2026-05-01T11:32:42.890676+00:00", "event": "task_generated", "task_id": "tb_trace_0048", "meta": {"mode": "trace_derived", "style_guide_phrase": "ecosystem"}}
+{"timestamp": "2026-05-01T11:32:42.890780+00:00", "event": "task_generated", "task_id": "tb_trace_0049", "meta": {"mode": "trace_derived", "style_guide_phrase": "game-changer"}}
+{"timestamp": "2026-05-01T11:32:42.890858+00:00", "event": "task_generated", "task_id": "tb_trace_0050", "meta": {"mode": "trace_derived", "style_guide_phrase": "disruptor"}}
+{"timestamp": "2026-05-01T11:32:42.890970+00:00", "event": "task_generated", "task_id": "tb_trace_0051", "meta": {"mode": "trace_derived", "style_guide_phrase": "paradigm shift"}}
+{"timestamp": "2026-05-01T11:32:42.891085+00:00", "event": "task_generated", "task_id": "tb_trace_0052", "meta": {"mode": "trace_derived", "style_guide_phrase": "our proprietary"}}
+{"timestamp": "2026-05-01T11:32:42.891182+00:00", "event": "task_generated", "task_id": "tb_trace_0053", "meta": {"mode": "trace_derived", "style_guide_phrase": "our AI-powered"}}
+{"timestamp": "2026-05-01T11:32:42.891263+00:00", "event": "task_generated", "task_id": "tb_trace_0054", "meta": {"mode": "trace_derived", "style_guide_phrase": "You'll regret missing this"}}
+{"timestamp": "2026-05-01T11:32:42.891352+00:00", "event": "task_generated", "task_id": "tb_trace_0055", "meta": {"mode": "trace_derived", "style_guide_phrase": "Don't miss out"}}
+{"timestamp": "2026-05-01T11:32:42.891427+00:00", "event": "task_generated", "task_id": "tb_trace_0056", "meta": {"mode": "trace_derived", "style_guide_phrase": "Per my last email"}}
+{"timestamp": "2026-05-01T11:32:42.891532+00:00", "event": "task_generated", "task_id": "tb_trace_0057", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 500 employees"}}
+{"timestamp": "2026-05-01T11:32:42.891616+00:00", "event": "task_generated", "task_id": "tb_trace_0058", "meta": {"mode": "trace_derived", "style_guide_phrase": "our 20 years of experience"}}
+{"timestamp": "2026-05-01T11:32:42.891695+00:00", "event": "task_generated", "task_id": "tb_trace_0059", "meta": {"mode": "trace_derived", "style_guide_phrase": "I'll keep this brief"}}
+{"timestamp": "2026-05-01T11:32:42.891791+00:00", "event": "task_generated", "task_id": "tb_trace_0060", "meta": {"mode": "trace_derived", "style_guide_phrase": "I noticed you're a"}}
+{"timestamp": "2026-05-01T11:32:42.891896+00:00", "event": "task_generated", "task_id": "tb_trace_0061", "meta": {"mode": "trace_derived", "style_guide_phrase": "world-class"}}
+{"timestamp": "2026-05-01T11:32:42.891980+00:00", "event": "task_generated", "task_id": "tb_trace_0062", "meta": {"mode": "trace_derived", "style_guide_phrase": "top talent"}}
+{"timestamp": "2026-05-01T11:32:42.892075+00:00", "event": "task_generated", "task_id": "tb_trace_0063", "meta": {"mode": "trace_derived", "style_guide_phrase": "A-players"}}
+{"timestamp": "2026-05-01T11:32:42.892286+00:00", "event": "task_generated", "task_id": "tb_trace_0064", "meta": {"mode": "trace_derived", "style_guide_phrase": "rockstar"}}
+{"timestamp": "2026-05-01T11:32:42.892405+00:00", "event": "task_generated", "task_id": "tb_trace_0065", "meta": {"mode": "trace_derived", "style_guide_phrase": "ninja"}}
+{"timestamp": "2026-05-01T11:32:42.892498+00:00", "event": "task_generated", "task_id": "tb_trace_0066", "meta": {"mode": "trace_derived", "style_guide_phrase": "wizard"}}
+{"timestamp": "2026-05-01T11:32:42.892601+00:00", "event": "task_generated", "task_id": "tb_trace_0067", "meta": {"mode": "trace_derived", "style_guide_phrase": "skyrocket"}}
+{"timestamp": "2026-05-01T11:32:42.892693+00:00", "event": "task_generated", "task_id": "tb_trace_0068", "meta": {"mode": "trace_derived", "style_guide_phrase": "supercharge"}}
+{"timestamp": "2026-05-01T11:32:42.892776+00:00", "event": "task_generated", "task_id": "tb_trace_0069", "meta": {"mode": "trace_derived", "style_guide_phrase": "10x"}}
+{"timestamp": "2026-05-01T11:32:42.892849+00:00", "event": "task_generated", "task_id": "tb_trace_0070", "meta": {"mode": "trace_derived", "style_guide_phrase": "I hope this email finds you well"}}
+{"timestamp": "2026-05-01T11:32:42.892979+00:00", "event": "task_generated", "task_id": "tb_trace_0071", "meta": {"mode": "trace_derived", "style_guide_phrase": "just following up"}}
+{"timestamp": "2026-05-01T11:32:42.893082+00:00", "event": "task_generated", "task_id": "tb_trace_0072", "meta": {"mode": "trace_derived", "style_guide_phrase": "circling back"}}
+{"timestamp": "2026-05-01T11:32:42.893201+00:00", "event": "task_generated", "task_id": "tb_trace_0073", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick question"}}
+{"timestamp": "2026-05-01T11:32:42.893281+00:00", "event": "task_generated", "task_id": "tb_trace_0074", "meta": {"mode": "trace_derived", "style_guide_phrase": "Quick chat"}}
+{"timestamp": "2026-05-01T11:32:42.893352+00:00", "event": "task_generated", "task_id": "tb_trace_0075", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergize"}}
+{"timestamp": "2026-05-01T11:32:42.893464+00:00", "event": "task_generated", "task_id": "tb_trace_0076", "meta": {"mode": "trace_derived", "style_guide_phrase": "synergy"}}
+{"timestamp": "2026-05-01T11:32:42.893555+00:00", "event": "task_generated", "task_id": "tb_trace_0077", "meta": {"mode": "trace_derived", "style_guide_phrase": "leverage"}}
+{"timestamp": "2026-05-01T11:32:42.893657+00:00", "event": "task_generated", "task_id": "tb_trace_0078", "meta": {"mode": "trace_derived", "style_guide_phrase": "ecosystem"}}
+{"timestamp": "2026-05-01T11:32:42.893730+00:00", "event": "task_generated", "task_id": "tb_trace_0079", "meta": {"mode": "trace_derived", "style_guide_phrase": "game-changer"}}
+{"timestamp": "2026-05-01T11:32:42.893813+00:00", "event": "task_generated", "task_id": "tb_trace_0080", "meta": {"mode": "trace_derived", "style_guide_phrase": "disruptor"}}
+{"timestamp": "2026-05-01T11:32:42.894971+00:00", "event": "task_generated", "task_id": "tb_prog_0081", "meta": {"mode": "programmatic", "style_guide_phrase": "world-class"}}
+{"timestamp": "2026-05-01T11:32:42.895073+00:00", "event": "task_generated", "task_id": "tb_prog_0082", "meta": {"mode": "programmatic", "style_guide_phrase": "top talent"}}
+{"timestamp": "2026-05-01T11:32:42.895154+00:00", "event": "task_generated", "task_id": "tb_prog_0083", "meta": {"mode": "programmatic", "style_guide_phrase": "A-players"}}
+{"timestamp": "2026-05-01T11:32:42.895231+00:00", "event": "task_generated", "task_id": "tb_prog_0084", "meta": {"mode": "programmatic", "style_guide_phrase": "rockstar"}}
+{"timestamp": "2026-05-01T11:32:42.895305+00:00", "event": "task_generated", "task_id": "tb_prog_0085", "meta": {"mode": "programmatic", "style_guide_phrase": "ninja"}}
+{"timestamp": "2026-05-01T11:32:42.895375+00:00", "event": "task_generated", "task_id": "tb_prog_0086", "meta": {"mode": "programmatic", "style_guide_phrase": "wizard"}}
+{"timestamp": "2026-05-01T11:32:42.895444+00:00", "event": "task_generated", "task_id": "tb_prog_0087", "meta": {"mode": "programmatic", "style_guide_phrase": "skyrocket"}}
+{"timestamp": "2026-05-01T11:32:42.895526+00:00", "event": "task_generated", "task_id": "tb_prog_0088", "meta": {"mode": "programmatic", "style_guide_phrase": "supercharge"}}
+{"timestamp": "2026-05-01T11:32:42.895610+00:00", "event": "task_generated", "task_id": "tb_prog_0089", "meta": {"mode": "programmatic", "style_guide_phrase": "10x"}}
+{"timestamp": "2026-05-01T11:32:42.895700+00:00", "event": "task_generated", "task_id": "tb_prog_0090", "meta": {"mode": "programmatic", "style_guide_phrase": "I hope this email finds you well"}}
+{"timestamp": "2026-05-01T11:32:42.895771+00:00", "event": "task_generated", "task_id": "tb_prog_0091", "meta": {"mode": "programmatic", "style_guide_phrase": "just following up"}}
+{"timestamp": "2026-05-01T11:32:42.895860+00:00", "event": "task_generated", "task_id": "tb_prog_0092", "meta": {"mode": "programmatic", "style_guide_phrase": "circling back"}}
+{"timestamp": "2026-05-01T11:32:42.895935+00:00", "event": "task_generated", "task_id": "tb_prog_0093", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick question"}}
+{"timestamp": "2026-05-01T11:32:42.896059+00:00", "event": "task_generated", "task_id": "tb_prog_0094", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick chat"}}
+{"timestamp": "2026-05-01T11:32:42.896135+00:00", "event": "task_generated", "task_id": "tb_prog_0095", "meta": {"mode": "programmatic", "style_guide_phrase": "synergize"}}
+{"timestamp": "2026-05-01T11:32:42.896207+00:00", "event": "task_generated", "task_id": "tb_prog_0096", "meta": {"mode": "programmatic", "style_guide_phrase": "synergy"}}
+{"timestamp": "2026-05-01T11:32:42.896278+00:00", "event": "task_generated", "task_id": "tb_prog_0097", "meta": {"mode": "programmatic", "style_guide_phrase": "leverage"}}
+{"timestamp": "2026-05-01T11:32:42.896348+00:00", "event": "task_generated", "task_id": "tb_prog_0098", "meta": {"mode": "programmatic", "style_guide_phrase": "ecosystem"}}
+{"timestamp": "2026-05-01T11:32:42.896420+00:00", "event": "task_generated", "task_id": "tb_prog_0099", "meta": {"mode": "programmatic", "style_guide_phrase": "game-changer"}}
+{"timestamp": "2026-05-01T11:32:42.896501+00:00", "event": "task_generated", "task_id": "tb_prog_0100", "meta": {"mode": "programmatic", "style_guide_phrase": "disruptor"}}
+{"timestamp": "2026-05-01T11:32:42.896572+00:00", "event": "task_generated", "task_id": "tb_prog_0101", "meta": {"mode": "programmatic", "style_guide_phrase": "paradigm shift"}}
+{"timestamp": "2026-05-01T11:32:42.896644+00:00", "event": "task_generated", "task_id": "tb_prog_0102", "meta": {"mode": "programmatic", "style_guide_phrase": "our proprietary"}}
+{"timestamp": "2026-05-01T11:32:42.896715+00:00", "event": "task_generated", "task_id": "tb_prog_0103", "meta": {"mode": "programmatic", "style_guide_phrase": "our AI-powered"}}
+{"timestamp": "2026-05-01T11:32:42.896798+00:00", "event": "task_generated", "task_id": "tb_prog_0104", "meta": {"mode": "programmatic", "style_guide_phrase": "You'll regret missing this"}}
+{"timestamp": "2026-05-01T11:32:42.896868+00:00", "event": "task_generated", "task_id": "tb_prog_0105", "meta": {"mode": "programmatic", "style_guide_phrase": "Don't miss out"}}
+{"timestamp": "2026-05-01T11:32:42.896938+00:00", "event": "task_generated", "task_id": "tb_prog_0106", "meta": {"mode": "programmatic", "style_guide_phrase": "Per my last email"}}
+{"timestamp": "2026-05-01T11:32:42.897027+00:00", "event": "task_generated", "task_id": "tb_prog_0107", "meta": {"mode": "programmatic", "style_guide_phrase": "our 500 employees"}}
+{"timestamp": "2026-05-01T11:32:42.897094+00:00", "event": "task_generated", "task_id": "tb_prog_0108", "meta": {"mode": "programmatic", "style_guide_phrase": "our 20 years of experience"}}
+{"timestamp": "2026-05-01T11:32:42.897162+00:00", "event": "task_generated", "task_id": "tb_prog_0109", "meta": {"mode": "programmatic", "style_guide_phrase": "I'll keep this brief"}}
+{"timestamp": "2026-05-01T11:32:42.897236+00:00", "event": "task_generated", "task_id": "tb_prog_0110", "meta": {"mode": "programmatic", "style_guide_phrase": "I noticed you're a"}}
+{"timestamp": "2026-05-01T11:32:42.897304+00:00", "event": "task_generated", "task_id": "tb_prog_0111", "meta": {"mode": "programmatic", "style_guide_phrase": "world-class"}}
+{"timestamp": "2026-05-01T11:32:42.897661+00:00", "event": "task_generated", "task_id": "tb_prog_0112", "meta": {"mode": "programmatic", "style_guide_phrase": "top talent"}}
+{"timestamp": "2026-05-01T11:32:42.897747+00:00", "event": "task_generated", "task_id": "tb_prog_0113", "meta": {"mode": "programmatic", "style_guide_phrase": "A-players"}}
+{"timestamp": "2026-05-01T11:32:42.897832+00:00", "event": "task_generated", "task_id": "tb_prog_0114", "meta": {"mode": "programmatic", "style_guide_phrase": "rockstar"}}
+{"timestamp": "2026-05-01T11:32:42.897901+00:00", "event": "task_generated", "task_id": "tb_prog_0115", "meta": {"mode": "programmatic", "style_guide_phrase": "ninja"}}
+{"timestamp": "2026-05-01T11:32:42.897990+00:00", "event": "task_generated", "task_id": "tb_prog_0116", "meta": {"mode": "programmatic", "style_guide_phrase": "wizard"}}
+{"timestamp": "2026-05-01T11:32:42.898060+00:00", "event": "task_generated", "task_id": "tb_prog_0117", "meta": {"mode": "programmatic", "style_guide_phrase": "skyrocket"}}
+{"timestamp": "2026-05-01T11:32:42.898133+00:00", "event": "task_generated", "task_id": "tb_prog_0118", "meta": {"mode": "programmatic", "style_guide_phrase": "supercharge"}}
+{"timestamp": "2026-05-01T11:32:42.898208+00:00", "event": "task_generated", "task_id": "tb_prog_0119", "meta": {"mode": "programmatic", "style_guide_phrase": "10x"}}
+{"timestamp": "2026-05-01T11:32:42.898294+00:00", "event": "task_generated", "task_id": "tb_prog_0120", "meta": {"mode": "programmatic", "style_guide_phrase": "I hope this email finds you well"}}
+{"timestamp": "2026-05-01T11:32:42.898368+00:00", "event": "task_generated", "task_id": "tb_prog_0121", "meta": {"mode": "programmatic", "style_guide_phrase": "just following up"}}
+{"timestamp": "2026-05-01T11:32:42.898437+00:00", "event": "task_generated", "task_id": "tb_prog_0122", "meta": {"mode": "programmatic", "style_guide_phrase": "circling back"}}
+{"timestamp": "2026-05-01T11:32:42.898543+00:00", "event": "task_generated", "task_id": "tb_prog_0123", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick question"}}
+{"timestamp": "2026-05-01T11:32:42.898623+00:00", "event": "task_generated", "task_id": "tb_prog_0124", "meta": {"mode": "programmatic", "style_guide_phrase": "Quick chat"}}
+{"timestamp": "2026-05-01T11:32:42.898712+00:00", "event": "task_generated", "task_id": "tb_prog_0125", "meta": {"mode": "programmatic", "style_guide_phrase": "synergize"}}
+{"timestamp": "2026-05-01T11:32:42.898815+00:00", "event": "task_generated", "task_id": "tb_prog_0126", "meta": {"mode": "programmatic", "style_guide_phrase": "synergy"}}
+{"timestamp": "2026-05-01T11:32:42.898894+00:00", "event": "task_generated", "task_id": "tb_prog_0127", "meta": {"mode": "programmatic", "style_guide_phrase": "leverage"}}
+{"timestamp": "2026-05-01T11:32:42.898984+00:00", "event": "task_generated", "task_id": "tb_prog_0128", "meta": {"mode": "programmatic", "style_guide_phrase": "ecosystem"}}
+{"timestamp": "2026-05-01T11:32:42.899061+00:00", "event": "task_generated", "task_id": "tb_prog_0129", "meta": {"mode": "programmatic", "style_guide_phrase": "game-changer"}}
+{"timestamp": "2026-05-01T11:32:42.899152+00:00", "event": "task_generated", "task_id": "tb_prog_0130", "meta": {"mode": "programmatic", "style_guide_phrase": "disruptor"}}
+{"timestamp": "2026-05-01T11:32:42.899242+00:00", "event": "task_generated", "task_id": "tb_prog_0131", "meta": {"mode": "programmatic", "style_guide_phrase": "paradigm shift"}}
+{"timestamp": "2026-05-01T11:32:42.899357+00:00", "event": "task_generated", "task_id": "tb_prog_0132", "meta": {"mode": "programmatic", "style_guide_phrase": "our proprietary"}}
+{"timestamp": "2026-05-01T11:32:42.899469+00:00", "event": "task_generated", "task_id": "tb_prog_0133", "meta": {"mode": "programmatic", "style_guide_phrase": "our AI-powered"}}
+{"timestamp": "2026-05-01T11:32:42.899570+00:00", "event": "task_generated", "task_id": "tb_prog_0134", "meta": {"mode": "programmatic", "style_guide_phrase": "You'll regret missing this"}}
+{"timestamp": "2026-05-01T11:32:42.899669+00:00", "event": "task_generated", "task_id": "tb_prog_0135", "meta": {"mode": "programmatic", "style_guide_phrase": "Don't miss out"}}
+{"timestamp": "2026-05-01T11:32:42.899768+00:00", "event": "task_generated", "task_id": "tb_prog_0136", "meta": {"mode": "programmatic", "style_guide_phrase": "Per my last email"}}
+{"timestamp": "2026-05-01T11:32:42.899865+00:00", "event": "task_generated", "task_id": "tb_prog_0137", "meta": {"mode": "programmatic", "style_guide_phrase": "our 500 employees"}}
+{"timestamp": "2026-05-01T11:32:42.899997+00:00", "event": "task_generated", "task_id": "tb_prog_0138", "meta": {"mode": "programmatic", "style_guide_phrase": "our 20 years of experience"}}
+{"timestamp": "2026-05-01T11:32:42.900113+00:00", "event": "task_generated", "task_id": "tb_prog_0139", "meta": {"mode": "programmatic", "style_guide_phrase": "I'll keep this brief"}}
+{"timestamp": "2026-05-01T11:32:42.900214+00:00", "event": "task_generated", "task_id": "tb_prog_0140", "meta": {"mode": "programmatic", "style_guide_phrase": "I noticed you're a"}}
+{"timestamp": "2026-05-01T11:32:42.900292+00:00", "event": "task_generated", "task_id": "tb_prog_0141", "meta": {"mode": "programmatic", "style_guide_phrase": "world-class"}}
+{"timestamp": "2026-05-01T11:32:42.900608+00:00", "event": "task_generated", "task_id": "tb_prog_0142", "meta": {"mode": "programmatic", "style_guide_phrase": "top talent"}}
+{"timestamp": "2026-05-01T11:32:42.900692+00:00", "event": "task_generated", "task_id": "tb_prog_0143", "meta": {"mode": "programmatic", "style_guide_phrase": "A-players"}}
+{"timestamp": "2026-05-01T11:32:42.900780+00:00", "event": "task_generated", "task_id": "tb_prog_0144", "meta": {"mode": "programmatic", "style_guide_phrase": "rockstar"}}
+{"timestamp": "2026-05-01T11:32:42.900868+00:00", "event": "task_generated", "task_id": "tb_prog_0145", "meta": {"mode": "programmatic", "style_guide_phrase": "ninja"}}
+{"timestamp": "2026-05-01T11:32:42.900957+00:00", "event": "task_generated", "task_id": "tb_prog_0146", "meta": {"mode": "programmatic", "style_guide_phrase": "wizard"}}
+{"timestamp": "2026-05-01T11:32:42.901057+00:00", "event": "task_generated", "task_id": "tb_prog_0147", "meta": {"mode": "programmatic", "style_guide_phrase": "skyrocket"}}
+{"timestamp": "2026-05-01T11:32:42.901169+00:00", "event": "task_generated", "task_id": "tb_prog_0148", "meta": {"mode": "programmatic", "style_guide_phrase": "supercharge"}}
+{"timestamp": "2026-05-01T11:32:42.901284+00:00", "event": "task_generated", "task_id": "tb_prog_0149", "meta": {"mode": "programmatic", "style_guide_phrase": "10x"}}
+{"timestamp": "2026-05-01T11:32:42.901394+00:00", "event": "task_generated", "task_id": "tb_prog_0150", "meta": {"mode": "programmatic", "style_guide_phrase": "I hope this email finds you well"}}
+{"timestamp": "2026-05-01T11:32:42.901570+00:00", "event": "task_generated", "task_id": "tb_synth_0151", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.901686+00:00", "event": "task_generated", "task_id": "tb_synth_0152", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.901777+00:00", "event": "task_generated", "task_id": "tb_synth_0153", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.901871+00:00", "event": "task_generated", "task_id": "tb_synth_0154", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.901994+00:00", "event": "task_generated", "task_id": "tb_synth_0155", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902090+00:00", "event": "task_generated", "task_id": "tb_synth_0156", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902160+00:00", "event": "task_generated", "task_id": "tb_synth_0157", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902254+00:00", "event": "task_generated", "task_id": "tb_synth_0158", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902355+00:00", "event": "task_generated", "task_id": "tb_synth_0159", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902455+00:00", "event": "task_generated", "task_id": "tb_synth_0160", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902524+00:00", "event": "task_generated", "task_id": "tb_synth_0161", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902609+00:00", "event": "task_generated", "task_id": "tb_synth_0162", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902688+00:00", "event": "task_generated", "task_id": "tb_synth_0163", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902783+00:00", "event": "task_generated", "task_id": "tb_synth_0164", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902876+00:00", "event": "task_generated", "task_id": "tb_synth_0165", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.902972+00:00", "event": "task_generated", "task_id": "tb_synth_0166", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903060+00:00", "event": "task_generated", "task_id": "tb_synth_0167", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903141+00:00", "event": "task_generated", "task_id": "tb_synth_0168", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903230+00:00", "event": "task_generated", "task_id": "tb_synth_0169", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903321+00:00", "event": "task_generated", "task_id": "tb_synth_0170", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903407+00:00", "event": "task_generated", "task_id": "tb_synth_0171", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903605+00:00", "event": "task_generated", "task_id": "tb_synth_0172", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903706+00:00", "event": "task_generated", "task_id": "tb_synth_0173", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903799+00:00", "event": "task_generated", "task_id": "tb_synth_0174", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903885+00:00", "event": "task_generated", "task_id": "tb_synth_0175", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.903983+00:00", "event": "task_generated", "task_id": "tb_synth_0176", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904077+00:00", "event": "task_generated", "task_id": "tb_synth_0177", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904165+00:00", "event": "task_generated", "task_id": "tb_synth_0178", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904254+00:00", "event": "task_generated", "task_id": "tb_synth_0179", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904357+00:00", "event": "task_generated", "task_id": "tb_synth_0180", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904441+00:00", "event": "task_generated", "task_id": "tb_synth_0181", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904522+00:00", "event": "task_generated", "task_id": "tb_synth_0182", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904621+00:00", "event": "task_generated", "task_id": "tb_synth_0183", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904717+00:00", "event": "task_generated", "task_id": "tb_synth_0184", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904787+00:00", "event": "task_generated", "task_id": "tb_synth_0185", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904878+00:00", "event": "task_generated", "task_id": "tb_synth_0186", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.904964+00:00", "event": "task_generated", "task_id": "tb_synth_0187", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905119+00:00", "event": "task_generated", "task_id": "tb_synth_0188", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905194+00:00", "event": "task_generated", "task_id": "tb_synth_0189", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905280+00:00", "event": "task_generated", "task_id": "tb_synth_0190", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905366+00:00", "event": "task_generated", "task_id": "tb_synth_0191", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905452+00:00", "event": "task_generated", "task_id": "tb_synth_0192", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905535+00:00", "event": "task_generated", "task_id": "tb_synth_0193", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905633+00:00", "event": "task_generated", "task_id": "tb_synth_0194", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905720+00:00", "event": "task_generated", "task_id": "tb_synth_0195", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905818+00:00", "event": "task_generated", "task_id": "tb_synth_0196", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.905900+00:00", "event": "task_generated", "task_id": "tb_synth_0197", "meta": {"mode": "multi_llm_synthesis", "seed": "Bench has 0 Go engineers but prospect asks for Go capacity.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.906004+00:00", "event": "task_generated", "task_id": "tb_synth_0198", "meta": {"mode": "multi_llm_synthesis", "seed": "Sustained objection pressure should not trigger over-apology.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.906087+00:00", "event": "task_generated", "task_id": "tb_synth_0199", "meta": {"mode": "multi_llm_synthesis", "seed": "Nairobi prospect needs explicit EAT timezone.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.906157+00:00", "event": "task_generated", "task_id": "tb_synth_0200", "meta": {"mode": "multi_llm_synthesis", "seed": "Low confidence competitor-gap data must be framed as questions.", "used_openrouter": false}}
+{"timestamp": "2026-05-01T11:32:42.906291+00:00", "event": "task_generated", "task_id": "tb_hand_0201", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.906382+00:00", "event": "task_generated", "task_id": "tb_hand_0202", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.906614+00:00", "event": "task_generated", "task_id": "tb_hand_0203", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.906698+00:00", "event": "task_generated", "task_id": "tb_hand_0204", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.906785+00:00", "event": "task_generated", "task_id": "tb_hand_0205", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.906884+00:00", "event": "task_generated", "task_id": "tb_hand_0206", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.906998+00:00", "event": "task_generated", "task_id": "tb_hand_0207", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.907082+00:00", "event": "task_generated", "task_id": "tb_hand_0208", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.907163+00:00", "event": "task_generated", "task_id": "tb_hand_0209", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.907252+00:00", "event": "task_generated", "task_id": "tb_hand_0210", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.907342+00:00", "event": "task_generated", "task_id": "tb_hand_0211", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.907447+00:00", "event": "task_generated", "task_id": "tb_hand_0212", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.907513+00:00", "event": "task_generated", "task_id": "tb_hand_0213", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.907613+00:00", "event": "task_generated", "task_id": "tb_hand_0214", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.907686+00:00", "event": "task_generated", "task_id": "tb_hand_0215", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.907779+00:00", "event": "task_generated", "task_id": "tb_hand_0216", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.907857+00:00", "event": "task_generated", "task_id": "tb_hand_0217", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.907960+00:00", "event": "task_generated", "task_id": "tb_hand_0218", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.908055+00:00", "event": "task_generated", "task_id": "tb_hand_0219", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.908136+00:00", "event": "task_generated", "task_id": "tb_hand_0220", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.908219+00:00", "event": "task_generated", "task_id": "tb_hand_0221", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.908310+00:00", "event": "task_generated", "task_id": "tb_hand_0222", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.908395+00:00", "event": "task_generated", "task_id": "tb_hand_0223", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.908494+00:00", "event": "task_generated", "task_id": "tb_hand_0224", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.908574+00:00", "event": "task_generated", "task_id": "tb_hand_0225", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.908657+00:00", "event": "task_generated", "task_id": "tb_hand_0226", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}
+{"timestamp": "2026-05-01T11:32:42.908738+00:00", "event": "task_generated", "task_id": "tb_hand_0227", "meta": {"mode": "hand_authored", "probe_id": "PROBE-008"}}
+{"timestamp": "2026-05-01T11:32:42.908813+00:00", "event": "task_generated", "task_id": "tb_hand_0228", "meta": {"mode": "hand_authored", "probe_id": "PROBE-009"}}
+{"timestamp": "2026-05-01T11:32:42.908909+00:00", "event": "task_generated", "task_id": "tb_hand_0229", "meta": {"mode": "hand_authored", "probe_id": "PROBE-004"}}
+{"timestamp": "2026-05-01T11:32:42.908996+00:00", "event": "task_generated", "task_id": "tb_hand_0230", "meta": {"mode": "hand_authored", "probe_id": "PROBE-005"}}

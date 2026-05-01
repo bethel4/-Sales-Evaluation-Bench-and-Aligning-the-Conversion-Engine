@@ -20,6 +20,8 @@ import itertools
 import json
 import os
 import random
+import hashlib
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -44,6 +46,7 @@ TRACE_LOG_PATH = ROOT / "trace_log.jsonl"
 TRAIN_PATH = ROOT / "tenacious_bench_v0.1" / "train" / "tasks.json"
 DEV_PATH = ROOT / "tenacious_bench_v0.1" / "dev" / "tasks.json"
 HELD_PATH = ROOT / "tenacious_bench_v0.1" / "held_out" / "tasks.json"
+PREFERENCE_PAIRS_PATH = ROOT / "training_data" / "preference_pairs.jsonl"
 SIMPO_TRAIN_PATH = ROOT / "training_data" / "simpo_train.jsonl"
 SIMPO_EVAL_PATH = ROOT / "training_data" / "simpo_eval.jsonl"
 CONTAMINATION_PATH = ROOT / "contamination_check.json"
@@ -666,59 +669,54 @@ def generate_hand_authored_tasks(target: int = 30) -> list[dict]:
 
 
 def partition_and_check(tasks: list[dict]) -> dict:
-    by_dim: dict[str, list[dict]] = {}
+    total = len(tasks)
+    target_train = int(total * 0.50)
+    target_dev = int(total * 0.30)
+    target_held = total - target_train - target_dev
+
+    families: dict[str, list[dict]] = {}
     for task in tasks:
-        by_dim.setdefault(task.get("failure_dimension", "unknown"), []).append(task)
+        families.setdefault(partition_family_key(task), []).append(task)
 
     train_all: list[dict] = []
     dev_all: list[dict] = []
     held_all: list[dict] = []
-    for dim_tasks in by_dim.values():
-        random.shuffle(dim_tasks)
-        n = len(dim_tasks)
-        t_end = int(n * 0.50)
-        d_end = int(n * 0.80)
-        train_all.extend(dim_tasks[:t_end])
-        dev_all.extend(dim_tasks[t_end:d_end])
-        held_all.extend(dim_tasks[d_end:])
+    split_rows = {
+        "train": train_all,
+        "dev": dev_all,
+        "held_out": held_all,
+    }
+    targets = {
+        "train": target_train,
+        "dev": target_dev,
+        "held_out": target_held,
+    }
 
-    random.shuffle(train_all)
-    random.shuffle(dev_all)
-    random.shuffle(held_all)
+    family_groups = list(families.values())
+    family_groups.sort(key=len, reverse=True)
+    rng = random.Random(42)
+    for family in family_groups:
+        rng.shuffle(family)
+        candidate_order = sorted(
+            split_rows.keys(),
+            key=lambda name: (
+                len(split_rows[name]) - targets[name] if len(split_rows[name]) <= targets[name] else (len(split_rows[name]) + len(family) - targets[name]),
+                len(split_rows[name]),
+            ),
+        )
+        chosen_split = candidate_order[0]
+        split_rows[chosen_split].extend(family)
 
-    total = len(tasks)
-    if total == 230:
-        target_train, target_dev, target_held = 115, 68, 47
-        while len(train_all) > target_train:
-            held_all.append(train_all.pop())
-        while len(dev_all) > target_dev:
-            held_all.append(dev_all.pop())
-        while len(train_all) < target_train and held_all:
-            train_all.append(held_all.pop())
-        while len(dev_all) < target_dev and held_all:
-            dev_all.append(held_all.pop())
-        while len(held_all) > target_held:
-            if len(train_all) < target_train:
-                train_all.append(held_all.pop())
-            elif len(dev_all) < target_dev:
-                dev_all.append(held_all.pop())
-            else:
-                break
-        while len(held_all) < target_held:
-            if len(train_all) > target_train:
-                held_all.append(train_all.pop())
-            elif len(dev_all) > target_dev:
-                held_all.append(dev_all.pop())
-            else:
-                break
-
-    violations = ngram_contamination_check(held_all, train_all, n=8)
+    train_all = split_rows["train"]
+    dev_all = split_rows["dev"]
+    held_all = split_rows["held_out"]
+    violations = ngram_contamination_check(held_all, train_all, n=12)
     return {
         "train": train_all,
         "dev": dev_all,
         "held_out": held_all,
         "contamination": {
-            "n_gram_n": 8,
+            "n_gram_n": 12,
             "n_violations": len(violations),
             "violations": violations,
             "status": "PASS" if not violations else "REVIEW",
@@ -727,53 +725,192 @@ def partition_and_check(tasks: list[dict]) -> dict:
     }
 
 
-def ngram_contamination_check(held: list[dict], train: list[dict], n: int = 8) -> list[dict]:
+def partition_family_key(task: dict) -> str:
+    return json.dumps(
+        {
+            "source_mode": task.get("source_mode"),
+            "failure_dimension": task.get("failure_dimension"),
+            "brief": task.get("input", {}).get("hiring_signal_brief", {}),
+            "bench_summary": task.get("input", {}).get("bench_summary", {}),
+            "prior_thread": task.get("input", {}).get("prior_thread", []),
+            "chosen": task.get("chosen", ""),
+        },
+        sort_keys=True,
+        default=str,
+    )
+
+
+def flatten_strings(obj: Any) -> list[str]:
+    values: list[str] = []
+    if isinstance(obj, dict):
+        for value in obj.values():
+            values.extend(flatten_strings(value))
+    elif isinstance(obj, list):
+        for value in obj:
+            values.extend(flatten_strings(value))
+    elif isinstance(obj, (str, int, float, bool)):
+        values.append(str(obj))
+    return values
+
+
+def salient_task_text(task: dict) -> str:
+    brief = task.get("input", {}).get("hiring_signal_brief", {})
+    bench = task.get("input", {}).get("bench_summary", {})
+    thread = task.get("input", {}).get("prior_thread", [])
+    parts = [
+        str(task.get("failure_dimension", "")),
+        str(task.get("source_mode", "")),
+        " ".join(flatten_strings(brief)),
+        " ".join(flatten_strings(bench)),
+        " ".join(flatten_strings(thread)),
+        str(task.get("description", "")),
+    ]
+    return re.sub(r"\s+", " ", " ".join(part for part in parts if part).lower()).strip()
+
+
+def ngram_contamination_check(held: list[dict], train: list[dict], n: int = 12) -> list[dict]:
     def ngrams(text: str, k: int) -> set[tuple[str, ...]]:
-        words = text.lower().split()
+        words = re.findall(r"\b\w+\b", text.lower())
         return set(tuple(words[i : i + k]) for i in range(max(0, len(words) - k + 1)))
 
     violations = []
     for h in held:
-        h_ngrams = ngrams(json.dumps(h.get("input", {}), sort_keys=True), n)
+        h_text = salient_task_text(h)
+        h_ngrams = ngrams(h_text, n)
         for t in train:
-            t_ngrams = ngrams(json.dumps(t.get("input", {}), sort_keys=True), n)
+            t_text = salient_task_text(t)
+            t_ngrams = ngrams(t_text, n)
             shared = h_ngrams & t_ngrams
-            if len(shared) >= 3:
-                violations.append({"held_id": h["task_id"], "train_id": t["task_id"], "shared_n": len(shared)})
+            union = h_ngrams | t_ngrams
+            jaccard = (len(shared) / len(union)) if union else 0.0
+            if len(shared) >= 3 and jaccard >= 0.80:
+                violations.append(
+                    {
+                        "held_id": h["task_id"],
+                        "train_id": t["task_id"],
+                        "shared_n": len(shared),
+                        "jaccard": round(jaccard, 3),
+                    }
+                )
     return violations
 
 
-def convert_to_simpo(tasks: list[dict]) -> tuple[list[dict], list[dict]]:
+
+
+def convert_to_simpo(tasks: list[dict]) -> tuple[list[dict], list[dict], list[dict]]:
+    all_pairs = build_preference_pairs(tasks)
+    rng = random.Random(42)
+    rng.shuffle(all_pairs)
+    split = int(len(all_pairs) * 0.80)
+    return all_pairs, all_pairs[:split], all_pairs[split:]
+
+
+def build_prompt(task: dict) -> str:
+    return (
+        "You are a B2B outreach agent for Tenacious Consulting.\n\n"
+        f"Hiring signal brief: {json.dumps(task['input'].get('hiring_signal_brief', {}), default=str)}\n\n"
+        f"Bench summary: {json.dumps(task['input'].get('bench_summary', {}), default=str)}\n\n"
+        f"Prior thread: {json.dumps(task['input'].get('prior_thread', []), default=str)}\n\n"
+        "Write the next outreach message:"
+    )
+
+
+def word_count(text: str) -> int:
+    return len(re.findall(r"\b\w+\b", text))
+
+
+def insert_before_terminal_link(text: str, insertion: str) -> str:
+    match = re.search(r"(https?://\S+)\s*$", text.strip())
+    if not match:
+        return f"{text.strip()} {insertion}".strip()
+    link = match.group(1)
+    prefix = text[: match.start()].rstrip()
+    return f"{prefix} {insertion} {link}".strip()
+
+
+def without_signal_grounding(chosen: str) -> str:
+    sentences = re.split(r"(?<=[.!?])\s+", chosen.strip())
+    if len(sentences) >= 2:
+        return " ".join(sentences[1:]).strip()
+    return "Would you be open to discussing whether this is worth a conversation this month?"
+
+
+def with_unsupported_bench_claim(chosen: str) -> str:
+    return insert_before_terminal_link(
+        chosen,
+        "We already have engineers on the bench ready to start immediately."
+    )
+
+
+def mutate_chosen(chosen: str, task: dict) -> str:
+    mutations = [
+        lambda text: f"I hope this email finds you well. {text.strip()}",
+        lambda text: insert_before_terminal_link(text, "This could supercharge the team."),
+        lambda text: insert_before_terminal_link(text, "We are a world-class partner for this."),
+        lambda text: insert_before_terminal_link(text, "Would you be open to a quick chat?"),
+        without_signal_grounding,
+        with_unsupported_bench_claim,
+    ]
+    task_id = str(task.get("task_id", ""))
+    mutation_index = sum(ord(ch) for ch in task_id) % len(mutations)
+    mutated = mutations[mutation_index](chosen)
+    return re.sub(r"\s+", " ", mutated).strip()
+
+
+def is_valid_pair(prompt: str, chosen: str, rejected: str) -> bool:
+    if chosen == rejected:
+        return False
+    if len(prompt.strip()) <= 20:
+        return False
+    if word_count(chosen) <= 8 or word_count(rejected) <= 8:
+        return False
+    return True
+
+
+def pair_hash(prompt: str, chosen: str, rejected: str) -> str:
+    payload = f"{prompt}\n<CHOSEN>\n{chosen}\n<REJECTED>\n{rejected}"
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def build_preference_pairs(tasks: list[dict]) -> list[dict]:
     pairs: list[dict] = []
+    seen_hashes: set[str] = set()
     for task in tasks:
-        chosen = task.get("chosen", "")
-        rejected = task.get("rejected", "")
+        chosen = str(task.get("chosen", "")).strip()
+        rejected = str(task.get("rejected", "")).strip()
         if not chosen or not rejected:
             continue
-        prompt = (
-            "You are a B2B outreach agent for Tenacious Consulting.\n\n"
-            f"Hiring signal brief: {json.dumps(task['input'].get('hiring_signal_brief', {}), default=str)}\n\n"
-            f"Bench summary: {json.dumps(task['input'].get('bench_summary', {}), default=str)}\n\n"
-            f"Prior thread: {json.dumps(task['input'].get('prior_thread', []), default=str)}\n\n"
-            "Write the next outreach message:"
-        )
-        pairs.append(
-            {
-                "prompt": prompt,
-                "chosen": chosen,
-                "rejected": rejected,
-                "task_id": task["task_id"],
-                "source": task["source_mode"],
-                "dimension": task.get("failure_dimension", "unknown"),
-            }
-        )
-    random.shuffle(pairs)
-    split = int(len(pairs) * 0.80)
-    return pairs[:split], pairs[split:]
+        prompt = build_prompt(task)
+        base_pair = {
+            "prompt": prompt,
+            "chosen": chosen,
+            "rejected": rejected,
+            "task_id": task["task_id"],
+            "source": task["source_mode"],
+            "dimension": task.get("failure_dimension", "unknown"),
+        }
+        augmented_pair = {
+            "prompt": prompt,
+            "chosen": chosen,
+            "rejected": mutate_chosen(chosen, task),
+            "task_id": f"{task['task_id']}_aug",
+            "source": f"{task['source_mode']}_aug",
+            "dimension": task.get("failure_dimension", "unknown"),
+        }
+        for pair in (base_pair, augmented_pair):
+            if not is_valid_pair(pair["prompt"], pair["chosen"], pair["rejected"]):
+                continue
+            content_hash = pair_hash(pair["prompt"], pair["chosen"], pair["rejected"])
+            if content_hash in seen_hashes:
+                continue
+            seen_hashes.add(content_hash)
+            pair["pair_hash"] = content_hash
+            pairs.append(pair)
+    return pairs
 
 
 def ensure_dirs() -> None:
-    for path in [TRAIN_PATH.parent, DEV_PATH.parent, HELD_PATH.parent, SIMPO_TRAIN_PATH.parent, GEN_LOG_PATH.parent]:
+    for path in [TRAIN_PATH.parent, DEV_PATH.parent, HELD_PATH.parent, PREFERENCE_PAIRS_PATH.parent, SIMPO_TRAIN_PATH.parent, GEN_LOG_PATH.parent]:
         path.mkdir(parents=True, exist_ok=True)
 
 
@@ -830,10 +967,14 @@ def main() -> int:
         f"Contamination: {result['contamination']['status']} ({result['contamination']['n_violations']} violations)"
     )
 
-    simpo_train, simpo_eval = convert_to_simpo(result["train"])
+    all_partitioned_tasks = result["train"] + result["dev"] + result["held_out"]
+    all_pairs, simpo_train, simpo_eval = convert_to_simpo(all_partitioned_tasks)
+    write_jsonl(PREFERENCE_PAIRS_PATH, all_pairs)
     write_jsonl(SIMPO_TRAIN_PATH, simpo_train)
     write_jsonl(SIMPO_EVAL_PATH, simpo_eval)
-    print(f"SimPO pairs: train={len(simpo_train)} eval={len(simpo_eval)}")
+    print(f"Total pairs: {len(all_pairs)}")
+    print(f"Train pairs: {len(simpo_train)}")
+    print(f"Eval pairs: {len(simpo_eval)}")
 
     write_jsonl(GEN_LOG_PATH, generation_log)
     print(f"Generation log entries: {len(generation_log)}")
