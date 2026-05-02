@@ -142,6 +142,42 @@ Not intended uses:
 - claiming broad coverage of all Tenacious sales interactions
 - reporting final leaderboard-style metrics
 
+## Limitations and Known Biases
+
+This scaffold has important limitations and known bias sources that should be considered when interpreting results:
+
+1. **Synthetic call-pattern bias**
+   - A non-trivial portion of tasks is programmatic, synthesis-ready, or hand-authored.
+   - These examples can be cleaner and more patterned than real production traces, which may inflate performance on mechanically detectable failures.
+
+2. **Domain skew (B2B outreach / staffing)**
+   - The dataset is intentionally focused on Tenacious sales-conversion scenarios.
+   - Results may not transfer to unrelated domains (for example retail support, healthcare, legal, or consumer chat flows).
+
+3. **Interim size and class imbalance risk**
+   - `v0.1` contains only 24 validated tasks, with uneven counts across failure dimensions.
+   - Small-N effects make confidence intervals wide and increase sensitivity to a few difficult tasks.
+
+4. **Author/labeler perspective bias**
+   - Rubric and preference labels encode a specific style guide and reviewer judgment.
+   - Different annotator backgrounds (sales tenure, region, communication norms) could produce different chosen/rejected decisions.
+
+5. **Style-guide prior bias**
+   - The evaluator directly enforces banned phrases and tone markers from Tenacious Style Guide v2.
+   - This can over-reward compliance with house style relative to broader notions of persuasive quality.
+
+6. **Held-out construction bias**
+   - The held-out split is separate, but still produced from related generation channels and rubric assumptions.
+   - Out-of-distribution robustness is not yet established.
+
+### Mitigations
+
+- report per-dimension metrics in addition to aggregate pass rates
+- include baseline and rule-based ablations with statistical tests
+- publish negative or null deltas transparently
+- scale to 200-300 tasks with broader source and dimension coverage
+- add second-pass review with annotator-diverse adjudication notes
+
 ## Distribution
 
 The scaffold is distributed inside this repo as JSON and JSONL artifacts. No external package index or hosted benchmark release is claimed yet. The committed format is intended for direct review by program evaluators and local script execution.

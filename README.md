@@ -54,6 +54,7 @@ Path B does not require publishing a trained model artifact in this checkpoint.
 - [Methodology](methodology.md)
 - [Methodology Rationale](methodology_rationale.md)
 - [Datasheet](datasheet.md)
+- [Datasheet Limitations and Known Biases](datasheet.md#limitations-and-known-biases)
 - [Inter-Rater Agreement](inter_rater_agreement.md)
 - [Report](report.md)
 
