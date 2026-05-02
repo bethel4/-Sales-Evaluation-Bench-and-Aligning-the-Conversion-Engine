@@ -31,6 +31,8 @@ QUALITY_DIMENSIONS = (
 )
 MIN_DIMENSION_SCORE = 4
 MIN_AVERAGE_SCORE = 4.0
+CALIBRATION_SAMPLE_SIZE = 50
+LOG_PATH = Path("generation_scripts/judge_filter_log.jsonl")
 
 
 def assert_no_same_model(generator_model: str, judge_model: str) -> None:
@@ -143,10 +145,19 @@ def judge_task_quality(
     passes = average >= MIN_AVERAGE_SCORE and all(
         value >= MIN_DIMENSION_SCORE for value in scores.values()
     )
+    reasons: list[str] = []
+    for dim, score in scores.items():
+        if score < MIN_DIMENSION_SCORE:
+            reasons.append(f"{dim}<{MIN_DIMENSION_SCORE}")
+    if average < MIN_AVERAGE_SCORE:
+        reasons.append(f"average<{MIN_AVERAGE_SCORE}")
+    if not reasons:
+        reasons.append("all_thresholds_met")
     return {
         **scores,
         "decision": "accept" if passes else "reject",
         "average_score": average,
+        "decision_reasons": reasons,
         "generator_model": generator_model,
         "judge_model": judge_model,
         "leakage_prevention": {
@@ -163,6 +174,13 @@ def select_calibration_sample(tasks: list[dict[str, Any]], n: int = 5) -> list[d
     return rng.sample(tasks, n)
 
 
+def _append_log_rows(rows: list[dict[str, Any]]) -> None:
+    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with LOG_PATH.open("a", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False, default=str) + "\n")
+
+
 def _load_tasks(path: Path) -> list[dict[str, Any]]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     return [row for row in payload if isinstance(row, dict)]
@@ -174,13 +192,31 @@ def main() -> int:
     args = parser.parse_args()
 
     tasks = _load_tasks(args.tasks)
-    sample = select_calibration_sample(tasks, n=min(5, len(tasks)))
+    # Bulk filtering (dev-tier cheap judge) runs across all tasks.
     results = [
-        judge_task_quality(task, generator_model=str(task.get("source_mode", "unknown")))
-        for task in sample
+        {
+            "task_id": str(task.get("task_id", "unknown")),
+            **judge_task_quality(task, generator_model=str(task.get("source_mode", "unknown"))),
+            "tier": "dev_bulk_filter",
+        }
+        for task in tasks
     ]
+    calibration_sample = select_calibration_sample(tasks, n=min(CALIBRATION_SAMPLE_SIZE, len(tasks)))
+    calibration = [
+        {
+            "task_id": str(task.get("task_id", "unknown")),
+            **judge_task_quality(
+                task,
+                generator_model=str(task.get("source_mode", "unknown")),
+                judge_model=EVAL_TIER_MODEL,
+            ),
+            "tier": "eval_spot_check",
+        }
+        for task in calibration_sample
+    ]
+    _append_log_rows(results + calibration)
     duplicate_report = (
-        compare_duplicate_candidates(sample[0], sample[1]) if len(sample) >= 2 else None
+        compare_duplicate_candidates(tasks[0], tasks[1]) if len(tasks) >= 2 else None
     )
     print(
         json.dumps(
@@ -188,8 +224,12 @@ def main() -> int:
                 "tasks_path": str(args.tasks),
                 "cheap_judge_model": CHEAP_JUDGE_MODEL,
                 "eval_tier_model": EVAL_TIER_MODEL,
+                "bulk_tasks_evaluated": len(results),
+                "eval_calibration_sample_n": len(calibration),
                 "results": results,
+                "calibration_results": calibration,
                 "duplicate_report": duplicate_report,
+                "log_path": str(LOG_PATH),
             },
             indent=2,
         )

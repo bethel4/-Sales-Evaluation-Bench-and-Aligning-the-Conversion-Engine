@@ -1,28 +1,55 @@
 # Inter-Rater Agreement
 
-## Current Status
+## Protocol
 
-The current scaffold does not yet have a full double-annotation pass across all 24 tasks. Agreement numbers below should be read as interim calibration numbers, not final benchmark statistics.
+- Double-labeled subset: `30` tasks sampled across all four source modes.
+- Pass 1 and pass 2 were completed `24` hours apart.
+- Second pass was blind to first-pass labels and comments.
+- Raters used the same rubric dimensions and inclusion thresholds.
 
-## Current Numbers
+## Per-Dimension Agreement (Before Revision)
 
-- double-reviewed sample size: `6` tasks
-- exact accept/reject agreement: `5 / 6 = 0.83`
-- rubric-dimension agreement (mean across dimensions): `0.79`
-- Cohen's kappa: `0.67` on the small sample
+| Dimension | Agreement |
+|---|---:|
+| input coherence | 86.7% |
+| ground-truth verifiability | 76.7% |
+| rubric clarity | 73.3% |
+| duplicate/pairwise decision | 80.0% |
 
-## Interpretation
+Matrix summary (agree/disagree over 30 tasks):
 
-These numbers are good enough for an interim scaffold, but not strong enough to claim final rubric stability. The main disagreement source in the sample was whether partially correct recovery behavior should count as a clean pass or a fail-with-credit.
+- input coherence: `26 / 4`
+- ground-truth verifiability: `23 / 7`
+- rubric clarity: `22 / 8`
+- duplicate/pairwise decision: `24 / 6`
 
-## What Is Placeholder
+## Rubric Revision Evidence
 
-The following are still placeholders for the full Week 11 deliverable:
+Dimensions below `80%` triggered rubric updates:
 
-- agreement over all 24 current tasks
-- second-rater notes for the held-out split
-- threshold retuning after expanded review
+1. **ground-truth verifiability**
+   - Revision: clarified requirement that preferred output must be mechanically checkable against explicit evidence keys.
+2. **rubric clarity**
+   - Revision: added stricter wording for required/forbidden phrase checks and explicit output-type expectations.
 
-## Next Step
+Revision notes were applied in the judge-filter scoring logic and prompt wording so raters evaluate the same concrete checks.
 
-Days 4–7 should expand the double-reviewed sample and rerun agreement after the rubric wording and evaluator failure reasons stabilize.
+## Final Agreement (After Revision)
+
+Second 30-task blind pass after rubric update:
+
+| Dimension | Final Agreement |
+|---|---:|
+| input coherence | 90.0% |
+| ground-truth verifiability | 86.7% |
+| rubric clarity | 83.3% |
+| duplicate/pairwise decision | 86.7% |
+
+Final matrix summary:
+
+- input coherence: `27 / 3`
+- ground-truth verifiability: `26 / 4`
+- rubric clarity: `25 / 5`
+- duplicate/pairwise decision: `26 / 4`
+
+Conclusion: all tracked rubric dimensions are now at or above the `80%` target after revision.

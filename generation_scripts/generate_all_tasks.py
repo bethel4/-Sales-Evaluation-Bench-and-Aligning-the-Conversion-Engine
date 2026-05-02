@@ -12,6 +12,12 @@ Style Guide usage:
 Leakage prevention:
 - generation_scripts/leakage_prevention.json defines MODEL_A (generation) vs MODEL_B (judge).
 - Enforced in call_generation / call_judge; tasks carry leakage_prevention metadata.
+
+Authoring share targets for scaled runs:
+- trace-derived: 30%
+- programmatic sweeps: 30%
+- multi-LLM synthesis: 25%
+- hand-authored adversarial: 15%
 """
 
 from __future__ import annotations
@@ -448,20 +454,26 @@ def generate_trace_derived_tasks(target: int = 80) -> list[dict]:
 
 def generate_programmatic_tasks(target: int = 70) -> list[dict]:
     tasks: list[dict] = []
-    confidence = ["low", "medium", "high", "none"]
-    roles = [2, 4, 7, 12, 15]
-    stacks = ["python", "go", "data", "ml", "infra"]
-    combos = list(itertools.product(confidence, roles, stacks))
+    company_size = ["startup", "mid_market", "enterprise"]
+    segment = ["segment_1", "segment_2", "segment_3", "segment_4"]
+    headcount = [20, 60, 180, 500]
+    stack = ["python", "go", "data", "ml", "infra"]
+    bench_state = ["healthy", "constrained", "zero_go"]
+    ai_maturity_score = [1, 2, 3, 4]
+    combos = list(itertools.product(company_size, segment, headcount, stack, bench_state, ai_maturity_score))
     random.shuffle(combos)
-    for i, (conf, role_count, stack) in enumerate(combos[:target]):
+    for i, (co_size, seg, hc, tech_stack, bench, ai_score) in enumerate(combos[:target]):
         task_id = next_id("prog")
-        dim = "bench_gate_enforcement" if stack == "go" and role_count < 5 else "confidence_aware_phrasing"
-        brief = default_brief(segment="segment_1", ai_score=1 if conf in {"low", "none"} else 2)
+        dim = "bench_gate_enforcement" if tech_stack == "go" and bench in {"constrained", "zero_go"} else "confidence_aware_phrasing"
+        brief = default_brief(segment=seg, ai_score=ai_score)
+        brief["company"]["employee_count"] = hc
+        brief["company"]["size_band"] = co_size
+        brief["bench_state"] = bench
         chosen = compliant_chosen(brief, dim)
         # BAD draft inspiration: overclaiming + style guide banned jargon.
         rejected = (
-            f"Our {STYLE_GUIDE_BANNED[i % len(STYLE_GUIDE_BANNED)]} team can deliver {role_count} "
-            f"{stack} engineers immediately and skyrocket execution."
+            f"Our {STYLE_GUIDE_BANNED[i % len(STYLE_GUIDE_BANNED)]} team can deliver "
+            f"{max(2, ai_score * 2)} {tech_stack} engineers immediately and skyrocket execution."
         )
         tasks.append(
             {
@@ -473,11 +485,18 @@ def generate_programmatic_tasks(target: int = 70) -> list[dict]:
                 "description": description_for_dimension(dim),
                 "WHY_THIS_TASK_EXISTS": why_for_dimension(dim),
                 "created_at": now_iso(),
-                "parameters": {"confidence": conf, "role_count": role_count, "stack": stack},
+                "parameters": {
+                    "company_size": co_size,
+                    "segment": seg,
+                    "headcount": hc,
+                    "stack": tech_stack,
+                    "bench_state": bench,
+                    "ai_maturity_score": ai_score,
+                },
                 "input": {
                     "hiring_signal_brief": brief,
-                    "bench_summary": {"python": 8, "go": 0, "ml": 3},
-                    "prior_thread": [{"role": "prospect", "text": f"Do you have {stack} engineers available?"}],
+                    "bench_summary": {"python": 8, "go": 0 if bench == "zero_go" else 2, "ml": 3},
+                    "prior_thread": [{"role": "prospect", "text": f"Do you have {tech_stack} engineers available?"}],
                 },
                 "chosen": chosen,
                 "rejected": rejected,

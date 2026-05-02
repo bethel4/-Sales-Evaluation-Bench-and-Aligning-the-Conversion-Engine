@@ -1,19 +1,41 @@
-# Audit Memo: Why Public Benchmarks Miss Tenacious-Specific Risk
+# Audit Memo: Week 10 Gap Analysis
 
-Public benchmarks like tau2-bench retail are valuable for transactional reliability (identity checks, tool calls, database transitions), but they under-grade the behaviors that matter most for Tenacious-style B2B conversion workflows. tau2 retail measures customer-support correctness, while Tenacious success depends on signal-grounded persuasion under uncertainty, bench-capacity truthfulness, and tone integrity across multi-contact threads. Passing a retail exchange task therefore does not prove the system can safely run outbound research-led sales motions.
+Public benchmark contrast: `tau2-bench retail` mainly measures transactional support reliability (auth flow correctness, tool API usage, DB state transitions). Tenacious-specific readiness requires additional dimensions that retail does not directly score: signal-grounded outreach claims, bench-capacity truthfulness, thread-memory discipline, timezone-safe scheduling, and tone stability under objection pressure.
 
-Week 10 probe evidence makes this mismatch concrete. First, public retail benchmarks do not grade ICP segmentation or abstention under mixed evidence. `P-001`, `P-002`, and `P-003` test whether funding, layoffs, and leadership signals route a prospect to the right segment; `P-035` tests abstention when evidence is too weak to justify a confident segment claim. Retail support tasks never ask whether a prospect should be pitched at all.
+Week 10 probes show why this is a structural measurement gap, not a generic “benchmark is weak” complaint:
 
-Second, public support benchmarks do not grade claim safety against noisy enrichment signals. `P-005`, `P-006`, and `P-008` test whether weak or medium-confidence hiring evidence is phrased cautiously rather than converted into aggressive growth claims. `P-022` and `P-023` test whether competitor-gap framing stays evidence-grounded and non-condescending. These probes target a concrete Tenacious risk: losing CTO trust by sounding certain when evidence is weak or adversarial.
+- **Signal-grounding and segmentation fidelity:** `PROBE-001`, `PROBE-002`, `PROBE-003`
+- **Abstention under uncertainty:** `PROBE-035`
+- **Claim safety vs noisy enrichment:** `PROBE-005`, `PROBE-006`, `PROBE-008`
+- **Bench-capacity gatekeeping:** `PROBE-009`, `PROBE-010`, `PROBE-011`
+- **Tone/voice integrity under skepticism:** `PROBE-012`, `PROBE-013`, `PROBE-014`
+- **Thread isolation:** `PROBE-015`, `PROBE-017`
+- **Timezone scheduling correctness:** `PROBE-018`, `PROBE-019`, `PROBE-020`, `PROBE-021`
 
-Third, public retail tasks do not grade delivery realism. `P-009`, `P-010`, and `P-011` test whether the agent refuses staffing commitments when stack coverage is unknown, unavailable, or capacity-constrained. An agent can execute order tools perfectly and still over-promise engineers Tenacious does not have.
+These probe IDs are dimension-specific and map to business failure modes (trust loss, false staffing commitments, thread leakage, missed meetings), not just style preferences.
 
-Fourth, public benchmarks under-specify interaction quality that matters in outbound sales. `P-012`, `P-013`, and `P-014` test whether tone stays specific and non-defensive under skepticism. `P-015` and `P-017` test thread isolation, and `P-018`, `P-019`, `P-020`, and `P-021` test timezone-safe scheduling, where a one-hour offset error can waste a high-intent meeting.
+Minimum Week 10 probe set explicitly covered: `PROBE-001`, `PROBE-002`, `PROBE-003`, `PROBE-005`, `PROBE-006`, `PROBE-008`, `PROBE-009`, `PROBE-010`, `PROBE-011`.
 
-Trace evidence supports a separate claim: even inside retail’s own scope, public benchmark passes do not guarantee stable trajectory execution. Historical trace `754d3a9b-b614-468e-9748-abf2ecc19a99` misses `get_product_details` and `exchange_delivered_order_items`, and trace `95e55d0f-513e-431f-a482-41f317cb0564` fails `return_delivered_order_items`; both show decisive write failures after otherwise plausible dialogue. Trace `3a1e8079-124c-4992-8077-f69fd4e11f77` fails the same exchange family that trace `4e89d9d4-a3dc-4f38-8127-08f9b352bf4d` passes, isolating the weakness as trajectory consistency rather than missing tool access. Our post-reset trace `tau2-real-0-1777378070` reaches auth and read steps, then still fails with `db_match=false` and missed `exchange_delivered_order_items`.
+Week 10 traces reinforce the same gap with trajectory evidence. Distinct trace IDs:
 
-The newest local traces sharpen that point. Local task `12` takes a wrong refund action, then recovers by transferring to a human and still receives `reward=1.0`; tau2 can therefore mark a trajectory as passing even when the path contains a material wrong step. Local task `17` successfully executes `modify_pending_order_address` but still ends with `reward=0.0`, showing that benchmark failure can coexist with user-visible completion. Local task `18` authenticates, finds the right order and replacement variant, yet still fails at `exchange_delivered_order_items`, reinforcing that long-horizon branch handling is brittle at the decisive action. Local task `45` ends in a provider authentication error, showing that evaluation can also mix operational fragility into what looks like model-quality evidence. Together with success traces `9f1bceea-557f-4086-b5f0-ddebed571544`, `3bb05cae-be14-405a-866c-7355eccde196`, and `85051d0d-3245-4ddb-b366-2ecb00df4ece`, the pattern is reliability at critical decision points rather than broad incapability.
+- `754d3a9b-b614-468e-9748-abf2ecc19a99`
+- `95e55d0f-513e-431f-a482-41f317cb0564`
+- `3a1e8079-124c-4992-8077-f69fd4e11f77`
+- `4e89d9d4-a3dc-4f38-8127-08f9b352bf4d`
+- `tau2-real-0-1777378070`
+- `9f1bceea-557f-4086-b5f0-ddebed571544`
+- `3bb05cae-be14-405a-866c-7355eccde196`
+- `85051d0d-3245-4ddb-b366-2ecb00df4ece`
 
-This matters because even perfect retail consistency would still leave Tenacious-specific risks ungraded: fabricated signal claims, bench over-commitment, tone drift, thread leakage, and timezone trust failures.
+Observed pattern: trajectories can complete early read/auth steps but still fail at decisive end-of-trajectory actions (`exchange_delivered_order_items`, return completion, or final write consistency). A retail-support pass can coexist with wrong intermediate action ordering, while some user-visible completions still receive fail outcomes. That means benchmark success/failure is not a sufficient proxy for Tenacious conversion-engine reliability.
 
-Therefore the required benchmark shift is structural, not cosmetic. Tenacious-Bench v0.1 must score at least five dimensions that tau2 retail does not natively enforce: (1) signal-grounded factuality, (2) bench-capacity truthfulness, (3) tone/voice adherence, (4) thread-memory integrity, and (5) scheduling correctness under timezone ambiguity. Week 11 should therefore prioritize a machine-verifiable sales benchmark and reliability intervention over repeated tau2 reruns.
+Dimension-level gap statement:
+
+1. **Signal-grounded factuality gap:** public retail does not penalize unsupported hiring/growth inference from weak evidence.
+2. **Bench-truthfulness gap:** public retail does not enforce “no staffing commitment without bench verification.”
+3. **Tone governance gap:** public retail underweights non-defensive, specific tone under multi-turn skepticism.
+4. **Thread-integrity gap:** public retail does not explicitly test contact-to-thread memory isolation in outbound sales.
+5. **Timezone execution gap:** public retail does not robustly grade cross-region scheduling correctness under ambiguity.
+6. **Trajectory consistency gap:** public pass/fail can miss wrong-step recovery dynamics that matter for trust and conversion.
+
+Conclusion: Tenacious-Bench must be scored on these sales-specific dimensions in addition to generic tool-call reliability. Re-running public retail alone cannot close the Week 10 failure modes.

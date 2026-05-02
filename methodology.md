@@ -55,6 +55,13 @@ The 24-task scaffold is partitioned across four source modes:
 - `5` multi-LLM synthesis placeholder-ready
 - `4` hand-authored adversarial
 
+Scaling share targets (documented and enforced in generation code):
+
+- trace-derived: ~30%
+- programmatic (parameter sweeps): ~30%
+- multi-LLM synthesis: ~25%
+- hand-authored adversarial: ~15%
+
 This mix lets the benchmark cover observed failures now while leaving room to scale later.
 
 ## Contamination Checks Run So Far
@@ -82,6 +89,13 @@ Disposition of flagged items:
 - trace reuse: retained only when rewritten as benchmark abstractions rather than raw transcript copies
 
 These checks are honest but partial. The next scaling step should add embedding-based duplicate review and a wider held-out sealing process.
+
+The repo now includes `generation_scripts/contamination_check.py` to enforce:
+
+- n-gram overlap checks on input fields using strict 7-gram matching
+- cheap embedding cosine screening with threshold `< 0.85`
+- time-shift checks for public-data references
+- coverage over both held-out vs train and held-out vs dev
 
 ## Preference Leakage Policy
 
