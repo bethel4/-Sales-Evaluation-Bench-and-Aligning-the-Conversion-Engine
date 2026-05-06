@@ -5,7 +5,7 @@ import argparse
 import json
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 # “Style Guide → Rubric → Code → Score”
 # Tenacious Style Guide v2 is the source of truth for banned phrase checks,
@@ -141,6 +141,7 @@ def load_style_guide_banned_phrases() -> list[str]:
 
 
 STYLE_GUIDE_BANNED_PHRASES = load_style_guide_banned_phrases()
+DECODING_STRATEGIES = ("reranker", "best_of_n", "rejection_sampling")
 
 
 def _check_negative_keyword(output: str, rubric_item: dict[str, Any]) -> list[str]:
@@ -343,7 +344,210 @@ def _resolve_agent_output(
     return fallback, field_name, None
 
 
-def score_task(task: dict[str, Any], agent_output: Any = None, score_field: str = "rejected") -> dict[str, Any]:
+def select_best_of_n(
+    prompt: Any,
+    generator: Callable[[Any], str],
+    judge: Callable[[Any, str], float],
+    *,
+    n_candidates: int = 3,
+) -> dict[str, Any]:
+    if n_candidates < 1:
+        raise ValueError("n_candidates must be >= 1")
+    candidates = [generator(prompt) for _ in range(n_candidates)]
+    judge_scores = [float(judge(prompt, c)) for c in candidates]
+    selected_idx = max(range(len(candidates)), key=lambda idx: judge_scores[idx])
+    return {
+        "selected_output": candidates[selected_idx],
+        "selected_index": selected_idx,
+        "selected_score": judge_scores[selected_idx],
+        "strategy": "best_of_n",
+        "n_candidates": len(candidates),
+        "scores": judge_scores,
+        "threshold": None,
+        "max_tries": None,
+    }
+
+
+def select_reranker(
+    prompt: Any,
+    candidate_fn: Callable[[Any, int], list[str]],
+    judge: Callable[[Any, str], float],
+    *,
+    n_candidates: int = 3,
+) -> dict[str, Any]:
+    if n_candidates < 1:
+        raise ValueError("n_candidates must be >= 1")
+    candidates = candidate_fn(prompt, n_candidates)
+    if not candidates:
+        raise ValueError("candidate_fn returned zero candidates")
+    judge_scores = [float(judge(prompt, c)) for c in candidates]
+    selected_idx = max(range(len(candidates)), key=lambda idx: judge_scores[idx])
+    return {
+        "selected_output": candidates[selected_idx],
+        "selected_index": selected_idx,
+        "selected_score": judge_scores[selected_idx],
+        "strategy": "reranker",
+        "n_candidates": len(candidates),
+        "scores": judge_scores,
+        "threshold": None,
+        "max_tries": None,
+    }
+
+
+def select_rejection_sampling(
+    prompt: Any,
+    generator: Callable[[Any], str],
+    judge: Callable[[Any, str], float],
+    *,
+    threshold: float = 0.8,
+    max_tries: int = 8,
+) -> dict[str, Any]:
+    if max_tries < 1:
+        raise ValueError("max_tries must be >= 1")
+    last_output = ""
+    last_score = 0.0
+    for attempt in range(1, max_tries + 1):
+        candidate = generator(prompt)
+        score = float(judge(prompt, candidate))
+        last_output = candidate
+        last_score = score
+        if score >= threshold:
+            return {
+                "selected_output": candidate,
+                "selected_index": attempt - 1,
+                "selected_score": score,
+                "strategy": "rejection_sampling",
+                "n_candidates": attempt,
+                "scores": [score],
+                "threshold": threshold,
+                "max_tries": max_tries,
+                "tries": attempt,
+                "fallback_used": False,
+            }
+    return {
+        "selected_output": last_output,
+        "selected_index": max_tries - 1,
+        "selected_score": last_score,
+        "strategy": "rejection_sampling",
+        "n_candidates": max_tries,
+        "scores": [last_score],
+        "threshold": threshold,
+        "max_tries": max_tries,
+        "tries": max_tries,
+        "fallback_used": True,
+    }
+
+
+def select_output(
+    prompt: Any,
+    generator: Callable[[Any], str],
+    judge: Callable[[Any, str], float],
+    strategy: str = "best_of_n",
+    *,
+    n_candidates: int = 3,
+    threshold: float = 0.8,
+    max_tries: int = 8,
+    candidate_fn: Callable[[Any, int], list[str]] | None = None,
+) -> dict[str, Any]:
+    """
+    Strategy wrapper that makes generator-judge coupling explicit and swappable.
+    """
+    if strategy == "best_of_n":
+        return select_best_of_n(prompt, generator, judge, n_candidates=n_candidates)
+    if strategy == "rejection_sampling":
+        return select_rejection_sampling(prompt, generator, judge, threshold=threshold, max_tries=max_tries)
+    if strategy == "reranker":
+        if candidate_fn is None:
+            candidate_fn = lambda p, n: [generator(p) for _ in range(n)]
+        return select_reranker(prompt, candidate_fn, judge, n_candidates=n_candidates)
+    raise ValueError(f"unsupported decoding strategy: {strategy}")
+
+
+def select_output_from_scores(
+    candidates: list[str],
+    judge_scores: list[float],
+    strategy: str = "best_of_n",
+    *,
+    threshold: float = 0.8,
+    max_tries: int = 8,
+) -> dict[str, Any]:
+    """
+    Couple generator candidates to a scalar judge at inference time.
+
+    Supported strategies:
+    - reranker: score all provided candidates and return top-1
+    - best_of_n: same top-1 behavior with an explicit N-cost interpretation
+    - rejection_sampling: return first candidate whose score >= threshold
+    """
+    if strategy not in DECODING_STRATEGIES:
+        raise ValueError(f"unsupported decoding strategy: {strategy}")
+    if len(candidates) != len(judge_scores):
+        raise ValueError("candidates and judge_scores must have equal length")
+    if not candidates:
+        raise ValueError("at least one candidate is required")
+
+    if strategy in ("reranker", "best_of_n"):
+        selected_idx = max(range(len(candidates)), key=lambda idx: judge_scores[idx])
+        return {
+            "selected_output": candidates[selected_idx],
+            "selected_index": selected_idx,
+            "selected_score": judge_scores[selected_idx],
+            "strategy": strategy,
+            "n_candidates": len(candidates),
+            "threshold": None,
+                "max_tries": None,
+        }
+
+    for idx, score in enumerate(judge_scores):
+        if score >= threshold:
+            return {
+                "selected_output": candidates[idx],
+                "selected_index": idx,
+                "selected_score": score,
+                "strategy": strategy,
+                "n_candidates": len(candidates),
+                "threshold": threshold,
+                "max_tries": max_tries,
+            }
+    fallback_idx = max(range(len(candidates)), key=lambda i: judge_scores[i])
+    return {
+        "selected_output": candidates[fallback_idx],
+        "selected_index": fallback_idx,
+        "selected_score": judge_scores[fallback_idx],
+        "strategy": strategy,
+        "n_candidates": len(candidates),
+        "threshold": threshold,
+        "max_tries": max_tries,
+        "fallback_used": True,
+    }
+
+
+def audit_decoding_strategy(payload: dict[str, Any]) -> dict[str, Any]:
+    """
+    One-function audit: infer configured strategy from run payload/config.
+    """
+    strategy = str(payload.get("decoding_strategy", "reranker"))
+    n_candidates = int(payload.get("n_candidates", 1))
+    threshold = payload.get("threshold", payload.get("rejection_threshold"))
+    max_tries = payload.get("max_tries")
+    inferred = strategy
+    if strategy == "reranker" and n_candidates > 1:
+        inferred = "best_of_n"
+    return {
+        "configured_strategy": strategy,
+        "inferred_runtime_behavior": inferred,
+        "n_candidates": n_candidates,
+        "threshold": threshold,
+        "max_tries": max_tries,
+    }
+
+
+def score_task(
+    task: dict[str, Any],
+    agent_output: Any = None,
+    score_field: str = "rejected",
+    decoding_strategy: str = "reranker",
+) -> dict[str, Any]:
     """
     Mechanically score one task/output pair.
 
@@ -364,7 +568,9 @@ def score_task(task: dict[str, Any], agent_output: Any = None, score_field: str 
         }
 
     if "scoring_rubric" in task:
-        return _score_task_schema_v01(task, resolved_output, score_field=score_field)
+        scored = _score_task_schema_v01(task, resolved_output, score_field=score_field)
+        scored["decoding_strategy"] = decoding_strategy
+        return scored
 
     try:
         if not isinstance(task, dict):
@@ -430,6 +636,7 @@ def score_task(task: dict[str, Any], agent_output: Any = None, score_field: str 
         "score": total,
         "pass": passed,
         "scored_field": resolved_field or score_field,
+        "decoding_strategy": decoding_strategy,
         "failure_reasons": failure_reasons,
         "components": components,
         "checks": {
@@ -581,13 +788,22 @@ def main() -> int:
         default="rejected",
         help="Which SimPO field to score when explicit output is missing.",
     )
+    parser.add_argument(
+        "--decoding-strategy",
+        choices=list(DECODING_STRATEGIES),
+        default="reranker",
+        help="Inference-time coupling strategy between generator candidates and judge score.",
+    )
     args = parser.parse_args()
 
     tasks = _load_tasks(args.tasks)
     if args.limit > 0:
         tasks = tasks[: args.limit]
 
-    results = [score_task(task, score_field=args.score_field) for task in tasks]
+    results = [
+        score_task(task, score_field=args.score_field, decoding_strategy=args.decoding_strategy)
+        for task in tasks
+    ]
     summary = {
         "tasks_path": str(args.tasks),
         "n_tasks": len(results),

@@ -26,6 +26,10 @@ class RunResult:
     prompt_tokens: int
     completion_tokens: int
     usd_cost: float
+    decoding_strategy: str
+    n_candidates: int
+    threshold: float | None
+    max_tries: int | None
 
 
 def _read_tasks(path: Path) -> list[dict[str, Any]]:
@@ -46,6 +50,14 @@ def _simulate_policy(task: dict[str, Any], mode: str) -> float:
     raise ValueError(f"unknown mode: {mode}")
 
 
+def _decoding_config_for_mode(mode: str) -> dict[str, Any]:
+    if mode in {"week10_baseline", "tau2_reference_info"}:
+        return {"decoding_strategy": "reranker", "n_candidates": 1, "threshold": None, "max_tries": None}
+    if mode in {"trained_judge_guarded", "prompt_engineered_only"}:
+        return {"decoding_strategy": "best_of_n", "n_candidates": 3, "threshold": None, "max_tries": None}
+    raise ValueError(f"unknown mode: {mode}")
+
+
 def _token_estimate(text: str) -> int:
     return max(1, len(text.split()))
 
@@ -53,9 +65,14 @@ def _token_estimate(text: str) -> int:
 def _run_single(task: dict[str, Any], mode: str) -> RunResult:
     start = time.perf_counter()
     score = _simulate_policy(task, mode)
-    prompt_tokens = _token_estimate(json.dumps(task.get("inputs", {}), default=str))
-    completion_tokens = _token_estimate(str(task.get("candidate_output", "")))
-    latency_ms = (time.perf_counter() - start) * 1000.0
+    config = _decoding_config_for_mode(mode)
+    base_prompt_tokens = _token_estimate(json.dumps(task.get("inputs", {}), default=str))
+    base_completion_tokens = _token_estimate(str(task.get("candidate_output", "")))
+    n_candidates = int(config["n_candidates"])
+    prompt_tokens = base_prompt_tokens * n_candidates
+    completion_tokens = base_completion_tokens * n_candidates
+    base_latency_ms = (time.perf_counter() - start) * 1000.0
+    latency_ms = base_latency_ms * n_candidates
     total_tokens = prompt_tokens + completion_tokens
     usd_cost = (total_tokens / 1_000_000.0) * 0.14
     return RunResult(
@@ -65,6 +82,10 @@ def _run_single(task: dict[str, Any], mode: str) -> RunResult:
         prompt_tokens=prompt_tokens,
         completion_tokens=completion_tokens,
         usd_cost=usd_cost,
+        decoding_strategy=str(config["decoding_strategy"]),
+        n_candidates=int(config["n_candidates"]),
+        threshold=config["threshold"],
+        max_tries=config["max_tries"],
     )
 
 
@@ -105,6 +126,10 @@ def _evaluate(tasks: list[dict[str, Any]], mode: str) -> list[RunResult]:
                     prompt_tokens=0,
                     completion_tokens=0,
                     usd_cost=0.0,
+                    decoding_strategy="unknown",
+                    n_candidates=0,
+                    threshold=None,
+                    max_tries=None,
                 )
             )
     return rows
@@ -159,6 +184,9 @@ def run_cost_pareto(label: str, rows: list[RunResult]) -> dict[str, Any]:
     total_cost = sum(r.usd_cost for r in rows)
     avg_latency = sum(r.latency_ms for r in rows) / max(1, len(rows))
     avg_score = sum(r.score for r in rows) / max(1, len(rows))
+    strategy_counts: dict[str, int] = {}
+    for row in rows:
+        strategy_counts[row.decoding_strategy] = strategy_counts.get(row.decoding_strategy, 0) + 1
     return {
         "label": label,
         "n_tasks": len(rows),
@@ -166,6 +194,7 @@ def run_cost_pareto(label: str, rows: list[RunResult]) -> dict[str, Any]:
         "avg_latency_ms": avg_latency,
         "total_tokens": total_tokens,
         "total_usd_cost": total_cost,
+        "decoding_strategy_distribution": strategy_counts,
     }
 
 
@@ -181,7 +210,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run ablation harness for Path B.")
     parser.add_argument("--tasks", type=Path, default=Path("tenacious_bench_v0.1/held_out/held_out_tasks.json"))
     parser.add_argument("--run", type=str, default="all", choices=["all", "delta_a", "delta_b", "delta_c", "delta_cost"])
-    parser.add_argument("--out", type=Path, default=Path("ablation_report.json"))
+    parser.add_argument("--out", type=Path, default=Path("ablation_results.json"))
     return parser.parse_args()
 
 
